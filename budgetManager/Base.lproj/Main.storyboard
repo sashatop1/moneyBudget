@@ -134,26 +134,26 @@
         <!--Adding changes-->
         <scene sceneID="iFe-Fv-bdt">
             <objects>
-                <viewController id="1IX-O4-o3w" sceneMemberID="viewController">
+                <viewController id="1IX-O4-o3w" customClass="PickerViewVC" customModule="budgetManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="li9-P8-Odv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fy1-aO-fys">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fy1-aO-fys">
                                 <rect key="frame" x="90" y="264" width="195" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37H-l1-PjQ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37H-l1-PjQ">
                                 <rect key="frame" x="200" y="437" width="85" height="30"/>
                                 <state key="normal" title="Add"/>
                                 <connections>
                                     <segue destination="piX-nO-U0S" kind="show" id="Cgz-eM-Ck0"/>
                                 </connections>
                             </button>
-                            <pickerView contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="um5-XN-slU">
-                                <rect key="frame" x="30" y="302" width="315" height="105"/>
+                            <pickerView contentMode="scaleToFill" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="um5-XN-slU">
+                                <rect key="frame" x="30" y="304" width="315" height="103"/>
                             </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -172,6 +172,9 @@
                         <viewLayoutGuide key="safeArea" id="W2S-Pz-esG"/>
                     </view>
                     <navigationItem key="navigationItem" title="Adding changes" id="299-Gg-MyT"/>
+                    <connections>
+                        <outlet property="moneyTypePicker" destination="um5-XN-slU" id="t1K-PJ-o3d"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Msi-7M-xda" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
