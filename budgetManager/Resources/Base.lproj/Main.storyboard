@@ -200,7 +200,7 @@
         <!--Budget info-->
         <scene sceneID="bW1-TF-iMz">
             <objects>
-                <viewController id="piX-nO-U0S" customClass="TableView" customModule="budgetManager" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="piX-nO-U0S" customClass="TableOfExpensesViewController" customModule="budgetManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e8B-aF-6tR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -209,7 +209,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="kpr-b0-LOC">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MainVCCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainVCCell" id="kpr-b0-LOC" customClass="TableOfExpensesCell" customModule="budgetManager" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kpr-b0-LOC" id="etF-dv-VSa">
@@ -239,11 +239,15 @@
                                                 <constraint firstItem="DNP-dA-j6K" firstAttribute="centerY" secondItem="etF-dv-VSa" secondAttribute="centerY" id="UQp-qm-2Lx"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="descriptionLabel" destination="dhY-O9-OVp" id="WN4-qV-BO2"/>
+                                            <outlet property="nameLabel" destination="1Bl-Wu-MJ8" id="3kD-Vd-yo9"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="piX-nO-U0S" id="lAQ-eP-8EN"/>
-                                    <outlet property="delegate" destination="piX-nO-U0S" id="2ln-fU-q6S"/>
+                                    <outlet property="dataSource" destination="piX-nO-U0S" id="c8Z-EV-2oK"/>
+                                    <outlet property="delegate" destination="piX-nO-U0S" id="efG-AO-lJg"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -258,8 +262,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Budget info" id="Gy7-LC-v9w"/>
                     <connections>
-                        <outlet property="TableViewBudget" destination="gzO-ZQ-vjD" id="k2y-az-hob"/>
-                        <outlet property="tableView" destination="gzO-ZQ-vjD" id="T2c-wn-PWl"/>
+                        <outlet property="tableView" destination="gzO-ZQ-vjD" id="tyu-FF-GJ7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AdP-f2-QWq" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -8,6 +8,7 @@
 
 import UIKit
 
+//название рофл)) лучше переименовать на энглиш, допустим expense + переименовать свойства
 class Trata {
     var summaTrati: Double
     var name: String
