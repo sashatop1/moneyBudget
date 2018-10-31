@@ -15,6 +15,10 @@ class BudgetManager {
     private let realmInstance = try! Realm()
     private static let realm = shared.realmInstance
     
+    //Приватный коструктор не позволит другим классам создать инстанс BudgetManager
+    //Таким образом наш синглтон shared точно будет единственным инстансом класса в проекте
+    private init(){}
+    
     static func allObjects() -> [Expense] {
         return Array(realm.objects(Expense.self))
     }
