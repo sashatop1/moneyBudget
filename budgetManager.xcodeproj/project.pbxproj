@@ -17,6 +17,7 @@
 		1FA687A4217A1B9B002D1361 /* TableOfExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA687A3217A1B9B002D1361 /* TableOfExpensesViewController.swift */; };
 		1FA687A6217A2AEE002D1361 /* TableOfExpensesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA687A5217A2AEE002D1361 /* TableOfExpensesCell.swift */; };
 		1FA687A8217A4AFD002D1361 /* BudgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA687A7217A4AFD002D1361 /* BudgetManager.swift */; };
+		B31D743D218A1FA9008B7819 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31D743C218A1FA9008B7819 /* Extensions.swift */; };
 		B4166D852F8A973C6CB107EE /* Pods_budgetManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6FAE290A1737A5F52D35FD3 /* Pods_budgetManager.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,7 @@
 		1FA687A5217A2AEE002D1361 /* TableOfExpensesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableOfExpensesCell.swift; sourceTree = "<group>"; };
 		1FA687A7217A4AFD002D1361 /* BudgetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetManager.swift; sourceTree = "<group>"; };
 		9CBA95B1096179407BC186D9 /* Pods-budgetManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budgetManager.release.xcconfig"; path = "Pods/Target Support Files/Pods-budgetManager/Pods-budgetManager.release.xcconfig"; sourceTree = "<group>"; };
+		B31D743C218A1FA9008B7819 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B6FAE290A1737A5F52D35FD3 /* Pods_budgetManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_budgetManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5F558232A79B01D95EBB789 /* Pods-budgetManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budgetManager.debug.xcconfig"; path = "Pods/Target Support Files/Pods-budgetManager/Pods-budgetManager.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,6 +78,7 @@
 				B3D24548217E365400400B61 /* Managers */,
 				B3D24547217E363800400B61 /* Resources */,
 				1F982B3921735CCF006B923A /* AppDelegate.swift */,
+				B31D743C218A1FA9008B7819 /* Extensions.swift */,
 				1F982B4521735CD3006B923A /* Info.plist */,
 				1F062A7E21760C870022A3CD /* GoogleService-Info.plist */,
 			);
@@ -251,7 +254,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-budgetManager/Pods-budgetManager-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-budgetManager/Pods-budgetManager-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 			);
@@ -264,7 +267,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-budgetManager/Pods-budgetManager-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-budgetManager/Pods-budgetManager-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -280,6 +283,7 @@
 				1F982B3C21735CCF006B923A /* PickerViewVC.swift in Sources */,
 				1FA687A8217A4AFD002D1361 /* BudgetManager.swift in Sources */,
 				1F982B3A21735CCF006B923A /* AppDelegate.swift in Sources */,
+				B31D743D218A1FA9008B7819 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +431,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7YBS2ZNK94;
 				INFOPLIST_FILE = budgetManager/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -445,6 +450,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7YBS2ZNK94;
 				INFOPLIST_FILE = budgetManager/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
