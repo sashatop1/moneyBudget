@@ -21,7 +21,7 @@ class TableOfExpensesViewController: UIViewController {
     
     // MARK: - Properties
     var arrayOfTypes = MoneyType.allCasesDescription() //Эти свойства нигде не используются, надо удалить
-    var cellEntities = [Trata]()
+    var cellEntities = [Expense]()
     
     // MARKL - @IBOutlets
     @IBOutlet weak var tableView: UITableView!

@@ -17,18 +17,18 @@ class BudgetManager {
      В этом маленьком проекте это мб лишняя запара, но зато поймешь, зачем нужны private свойства, что такое custom accessors,
      как работает синглтон и обертки над ним
     */
-    private var savedObjects = [Trata]()
+    private var savedObjects = [Expense]()
     
     //все эти методы - это обертки над синглтоном, вызываем как статик прямо из класса, но в итоге работаем именно с синглтоном
-    static func allObjects() -> [Trata] {
+    static func allObjects() -> [Expense] {
         return shared.savedObjects
     }
     
-    static func addObject(object: Trata) {
+    static func addObject(object: Expense) {
         shared.savedObjects.append(object)
     }
     
-    static func addObjects(objects: [Trata]) {
+    static func addObjects(objects: [Expense]) {
         shared.savedObjects.append(contentsOf: objects)
     }
 }

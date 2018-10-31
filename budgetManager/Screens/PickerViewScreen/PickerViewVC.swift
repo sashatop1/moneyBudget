@@ -57,12 +57,12 @@ extension PickerViewVC {
     @IBAction func AddChoice(_ sender: Any) {
         guard let text = textField.text, let doubleValue = Double(text) else { return }
         
-        let userExpense = Trata(amountOfUserPick: doubleValue, userPick: userChoice)
+        let userExpense = Expense(amountOfUserPick: doubleValue, userPick: userChoice)
         BudgetManager.addObject(object: userExpense)
     }
     
     @IBAction func showResultsTapped(_ sender: UIButton) {
-        BudgetManager.allObjects().forEach({ print("\($0.summaTrati) of \($0.name)") })
+        BudgetManager.allObjects().forEach({ print("\($0.amountExpense) of \($0.expenseType)") })
     }
 }
 
