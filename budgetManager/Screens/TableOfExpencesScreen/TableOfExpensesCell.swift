@@ -16,9 +16,9 @@ class TableOfExpensesCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    func setupCell(withEntity entity: Expense) {
-        nameLabel.text = entity.expenseType
-        descriptionLabel.text = String(entity.amountExpense)
+    func setupCell(withModel model: Expense) {
+        nameLabel.text = model.expenseType
+        descriptionLabel.text = String(model.amountExpense)
         
         //в сетапе не было передано значение для аутлета colorView с типом UIView! (который 100% ожидает значение), в результате чего был бы краш
     }

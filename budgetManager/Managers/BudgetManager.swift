@@ -7,28 +7,25 @@
 //
 
 import Foundation
+import RealmSwift
 
 class BudgetManager {
     //наш синглтон
-    static let shared = BudgetManager()
+    private static let shared = BudgetManager()
+    private let realmInstance = try! Realm()
+    private static let realm = shared.realmInstance
     
-    /*свойство объявлено как приватное, потому что этот массив играет роль нашей БД
-     БД обычно имеют обертку для доступа/записи информации
-     В этом маленьком проекте это мб лишняя запара, но зато поймешь, зачем нужны private свойства, что такое custom accessors,
-     как работает синглтон и обертки над ним
-    */
-    private var savedObjects = [Expense]()
-    
-    //все эти методы - это обертки над синглтоном, вызываем как статик прямо из класса, но в итоге работаем именно с синглтоном
     static func allObjects() -> [Expense] {
-        return shared.savedObjects
+        return Array(realm.objects(Expense.self))
     }
     
     static func addObject(object: Expense) {
-        shared.savedObjects.append(object)
+        try! realm.write {
+            realm.add(object)
+        }
     }
     
-    static func addObjects(objects: [Expense]) {
-        shared.savedObjects.append(contentsOf: objects)
+    static func getTotalExpenses(forExpenseType type: String) -> Int {
+       return Int(allObjects().filter { $0.expenseType == type }.reduce(0) { $0 + $1.amountExpense })
     }
 }

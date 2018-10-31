@@ -23,7 +23,7 @@ class TableOfExpensesViewController: UIViewController {
     var arrayOfTypes = MoneyType.allCasesDescription() //Эти свойства нигде не используются, надо удалить
     var cellEntities = [Expense]()
     
-    // MARKL - @IBOutlets
+    // MARK: - @IBOutlets
     @IBOutlet weak var tableView: UITableView!
     
     //MARK: - Lifecycle
@@ -36,6 +36,20 @@ class TableOfExpensesViewController: UIViewController {
         //тут с текущей навигацией можно не вызывать reloadData так как таблица сама релоудится при первом заходе на экран
         //tableView.reloadData()
     }
+    
+    //MARK: - Support methods
+    func getSections() -> [String] {
+        return BudgetManager.allObjects().map { $0.expenseType }.unique.sorted()
+    }
+    
+    func getSectionTitles() -> [String] {
+        return getSections().map { "\($0): Total sum = \(BudgetManager.getTotalExpenses(forExpenseType: $0))" }
+    }
+    
+    func getRowsForSection(_ section: Int) -> [Expense] {
+        let currentSection = getSections()[section]
+        return BudgetManager.allObjects().filter { $0.expenseType == currentSection }
+    }
 }
 
 /*
@@ -46,18 +60,24 @@ class TableOfExpensesViewController: UIViewController {
 // MARK: - UITableViewDelegate & UITableViewDataSource
 extension TableOfExpensesViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return getSections().count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return getSectionTitles()[section]
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return BudgetManager.allObjects().count
+        return getRowsForSection(section).count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableOfExpensesCell.identifier) as! TableOfExpensesCell
-        let expence = BudgetManager.allObjects()[indexPath.row]
-        cell.setupCell(withEntity: expence)
+        let expence = getRowsForSection(indexPath.section)[indexPath.row]
+        cell.setupCell(withModel: expence)
         return cell
     }
 }
-
-
 
 

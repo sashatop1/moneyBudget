@@ -41,7 +41,7 @@ class PickerViewVC: UIViewController {
 
     // MARK: - Properties
     var selectedAmount: Double = 0
-    var userChoice: String = ""
+    var userChoice: String = MoneyType.allCases.first!.description
     
     override func viewDidLoad() {
         super.viewDidLoad()
