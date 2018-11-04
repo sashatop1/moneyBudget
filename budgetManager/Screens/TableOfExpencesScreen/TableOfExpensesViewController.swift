@@ -37,6 +37,8 @@ class TableOfExpensesViewController: UIViewController {
         //tableView.reloadData()
     }
     
+    
+    
     //MARK: - Support methods
     func getSections() -> [String] {
         return BudgetManager.allObjects().map { $0.expenseType }.unique.sorted()
@@ -78,6 +80,14 @@ extension TableOfExpensesViewController: UITableViewDelegate, UITableViewDataSou
         cell.setupCell(withModel: expence)
         return cell
     }
+
+    //deletebutton
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            BudgetManager.deleteObject(object: getRowsForSection(indexPath.section)[indexPath.row])
+            tableView.reloadData()
+        }
 }
 
+}
 
