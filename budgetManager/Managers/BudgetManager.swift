@@ -29,6 +29,19 @@ class BudgetManager {
         }
     }
     
+    static func addExpenseType(object: UserExpenseType) {
+        try! realm.write {
+            realm.add(object)
+        }
+        
+    }
+    
+    static func checkingIfDbHasInfo(object: UserExpenseType) {
+        try! realm.isEmpty
+
+    }
+    
+    
     static func deleteObject(object: Expense) {
         try! realm.write {
             realm.delete(object)

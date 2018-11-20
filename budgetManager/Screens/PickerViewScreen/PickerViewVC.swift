@@ -36,33 +36,40 @@ enum MoneyType: CaseIterable {
 class PickerViewVC: UIViewController {
     
     // MARK: - @IBOutlets
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var textFieldAmount: UITextField!
     @IBOutlet weak var moneyTypePicker: UIPickerView!
-
+    @IBOutlet weak var textFieldExpenseType: UITextField!
+    
+    
     // MARK: - Properties
     var selectedAmount: Double = 0
-    var userChoice: String = MoneyType.allCases.first!.description
+    var userChoice: String = MoneyType.allCasesDescription().first!
+    var titlesForPicker = MoneyType.allCasesDescription()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if BudgetManager.checkingIfDbHasInfo(object: UserExpenseType) = true { return }
+        else { }
         moneyTypePicker.dataSource = self
         moneyTypePicker.delegate = self
-    }
+        }
 }
 
 // MARK: - @IBActions
 extension PickerViewVC {
+    @IBAction func AddingNewType(_ sender: Any) {
+        guard let expenseTypeName = textFieldExpenseType.text else { return }
+        
+        let newExpenseType = UserExpenseType(userExpenseType: expenseTypeName)
+        BudgetManager.addExpenseType(object: newExpenseType)
+    }
     
     @IBAction func AddChoice(_ sender: Any) {
-        guard let text = textField.text, let doubleValue = Double(text) else { return }
+        guard let text = textFieldAmount.text, let doubleValue = Double(text) else { return }
         
         let userExpense = Expense(amountOfUserPick: doubleValue, userPick: userChoice)
         BudgetManager.addObject(object: userExpense)
-    }
-    
-    @IBAction func showResultsTapped(_ sender: UIButton) {
-        BudgetManager.allObjects().forEach({ print("\($0.amountExpense) of \($0.expenseType)") })
     }
 }
 
@@ -85,16 +92,16 @@ extension PickerViewVC: UIPickerViewDelegate, UIPickerViewDataSource {
         
     }
 }
-
-extension PickerViewVC: UITextFieldDelegate {
-    // не понял зачем это
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if let text = textField.text, let textRange = Range(range, in: text) {
-            _ = text.replacingCharacters(in: textRange, with: string)
-        }
-        return true
-    }
-}
+//
+//extension PickerViewVC: UITextFieldDelegate {
+//    // не понял зачем это
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        if let text = textField.text, let textRange = Range(range, in: text) {
+//            _ = text.replacingCharacters(in: textRange, with: string)
+//        }
+//        return true
+//    }
+//}
 
 
 
