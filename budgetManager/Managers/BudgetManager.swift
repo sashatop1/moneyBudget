@@ -36,8 +36,8 @@ class BudgetManager {
         
     }
     
-    static func checkingIfDbHasInfo(object: UserExpenseType) {
-        try! realm.isEmpty
+    static func DBHasEntries(ofType type: UserExpenseType.Type) -> Bool {
+        return !realm.objects(type).isEmpty
 
     }
     

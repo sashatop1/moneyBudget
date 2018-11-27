@@ -48,12 +48,23 @@ class PickerViewVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if BudgetManager.checkingIfDbHasInfo(object: UserExpenseType) = true { return }
-        else { }
+        configureView()
+    }
+    
+    private func configureView() {
         moneyTypePicker.dataSource = self
         moneyTypePicker.delegate = self
+        
+        if BudgetManager.DBHasEntries(ofType: UserExpenseType.self) == true {
         }
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
 
 // MARK: - @IBActions
@@ -89,19 +100,9 @@ extension PickerViewVC: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         userChoice = MoneyType.allCasesDescription()[row]
-        
     }
 }
-//
-//extension PickerViewVC: UITextFieldDelegate {
-//    // не понял зачем это
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        if let text = textField.text, let textRange = Range(range, in: text) {
-//            _ = text.replacingCharacters(in: textRange, with: string)
-//        }
-//        return true
-//    }
-//}
+
 
 
 
