@@ -33,12 +33,14 @@ enum MoneyType: CaseIterable {
     }
 }
 
-class PickerViewVC: UIViewController {
+class PickerViewVC: BaseController {
     
     // MARK: - @IBOutlets
     @IBOutlet weak var textFieldAmount: UITextField!
     @IBOutlet weak var moneyTypePicker: UIPickerView!
     @IBOutlet weak var textFieldExpenseType: UITextField!
+    @IBOutlet weak var addChoiceButton: UIButton!
+    @IBOutlet weak var createTypeButton: UIButton!
     
     
     // MARK: - Properties
@@ -49,22 +51,34 @@ class PickerViewVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
+        
+        textFieldAmount.delegate = self
+        if textFieldAmount.text!.isEmpty == true {
+            addChoiceButton.isUserInteractionEnabled = false
+            addChoiceButton.alpha = 0.7
+        }
+        
     }
     
     private func configureView() {
         moneyTypePicker.dataSource = self
         moneyTypePicker.delegate = self
         
-        if BudgetManager.DBHasEntries(ofType: UserExpenseType.self) == true {
+        self.view.backgroundColor = UIColor.init(red: 0.22, green: 0.28, blue: 0.31, alpha: 1)
+        self.textFieldAmount.backgroundColor = UIColor.init(red: 0.38, green: 0.45, blue: 0.48, alpha: 1)
+        self.textFieldExpenseType.backgroundColor = UIColor.init(red: 0.38, green: 0.45, blue: 0.48, alpha: 1)
+        self.textFieldAmount.textColor = UIColor.white
+        self.textFieldExpenseType.textColor = UIColor.white
+        self.textFieldAmount.attributedPlaceholder = NSAttributedString(string: "Enter amount", attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(red: 1, green: 1, blue: 1, alpha: 0.4)])
+        self.textFieldExpenseType.attributedPlaceholder = NSAttributedString(string: "Enter new type", attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(red: 1, green: 1, blue: 1, alpha: 0.4)])
+        self.createTypeButton.backgroundColor = UIColor.clear
+        navigationController?.navigationBar.barTintColor = UIColor.init(red: 0.06, green: 0.13, blue: 0.15, alpha: 1)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:  UIColor.init(red: 1, green: 1, blue: 1, alpha: 1)]
+        if BudgetManager.DBHasEntries(ofType: UserExpenseType.self) == true { 
         }
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
     }
     
-    @objc private func dismissKeyboard() {
-        view.endEditing(true)
-    }
+   
 }
 
 // MARK: - @IBActions
@@ -81,25 +95,38 @@ extension PickerViewVC {
         
         let userExpense = Expense(amountOfUserPick: doubleValue, userPick: userChoice)
         BudgetManager.addObject(object: userExpense)
+        
+        textFieldAmount.text = ""
     }
 }
 
-extension PickerViewVC: UIPickerViewDelegate, UIPickerViewDataSource {
+extension PickerViewVC: UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        return NSAttributedString(string: MoneyType.allCasesDescription()[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+    }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return MoneyType.allCases.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return MoneyType.allCasesDescription()[row]
-    }
-    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         userChoice = MoneyType.allCasesDescription()[row]
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let text = (textFieldAmount.text! as NSString).replacingCharacters(in: range, with: string)
+        if !text.isEmpty {
+            addChoiceButton.isUserInteractionEnabled = true
+            addChoiceButton.alpha = 1
+        } else {
+            addChoiceButton.isUserInteractionEnabled = false
+            addChoiceButton.alpha = 0.7
+            
+        }
+        return true
+        
     }
 }
 

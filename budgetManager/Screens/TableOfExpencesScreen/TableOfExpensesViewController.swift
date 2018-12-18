@@ -29,7 +29,12 @@ class TableOfExpensesViewController: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView()
+        
+        self.tableView.backgroundColor = UIColor.init(red: 0.22, green: 0.28, blue: 0.31, alpha: 1)
+        
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -80,7 +85,11 @@ extension TableOfExpensesViewController: UITableViewDelegate, UITableViewDataSou
         cell.setupCell(withModel: expence)
         return cell
     }
-
+    //cell color
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = UIColor.init(red: 0.22, green: 0.28, blue: 0.31, alpha: 1)
+    }
+    
     //deletebutton
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
@@ -88,6 +97,5 @@ extension TableOfExpensesViewController: UITableViewDelegate, UITableViewDataSou
             tableView.reloadData()
         }
 }
-
 }
 

@@ -20,9 +20,7 @@ class TableOfExpensesCell: UITableViewCell {
         nameLabel.text = model.expenseType
         descriptionLabel.text = String(model.amountExpense)
         
-        //в сетапе не было передано значение для аутлета colorView с типом UIView! (который 100% ожидает значение), в результате чего был бы краш
     }
-    
 }
 
 

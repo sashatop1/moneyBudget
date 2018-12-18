@@ -17,9 +17,9 @@
 		1FA687A4217A1B9B002D1361 /* TableOfExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA687A3217A1B9B002D1361 /* TableOfExpensesViewController.swift */; };
 		1FA687A6217A2AEE002D1361 /* TableOfExpensesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA687A5217A2AEE002D1361 /* TableOfExpensesCell.swift */; };
 		1FA687A8217A4AFD002D1361 /* BudgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA687A7217A4AFD002D1361 /* BudgetManager.swift */; };
+		1FDB00E121B1A46600CE0616 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDB00E021B1A46600CE0616 /* BaseController.swift */; };
 		1FFE883021A2B904007965A9 /* UserExpenseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE882F21A2B904007965A9 /* UserExpenseType.swift */; };
 		B31D743D218A1FA9008B7819 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31D743C218A1FA9008B7819 /* Extensions.swift */; };
-		B4166D852F8A973C6CB107EE /* Pods_budgetManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6FAE290A1737A5F52D35FD3 /* Pods_budgetManager.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,10 +35,10 @@
 		1FA687A3217A1B9B002D1361 /* TableOfExpensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableOfExpensesViewController.swift; sourceTree = "<group>"; };
 		1FA687A5217A2AEE002D1361 /* TableOfExpensesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableOfExpensesCell.swift; sourceTree = "<group>"; };
 		1FA687A7217A4AFD002D1361 /* BudgetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetManager.swift; sourceTree = "<group>"; };
+		1FDB00E021B1A46600CE0616 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		1FFE882F21A2B904007965A9 /* UserExpenseType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserExpenseType.swift; sourceTree = "<group>"; };
 		9CBA95B1096179407BC186D9 /* Pods-budgetManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budgetManager.release.xcconfig"; path = "Pods/Target Support Files/Pods-budgetManager/Pods-budgetManager.release.xcconfig"; sourceTree = "<group>"; };
 		B31D743C218A1FA9008B7819 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		B6FAE290A1737A5F52D35FD3 /* Pods_budgetManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_budgetManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5F558232A79B01D95EBB789 /* Pods-budgetManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budgetManager.debug.xcconfig"; path = "Pods/Target Support Files/Pods-budgetManager/Pods-budgetManager.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -47,7 +47,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4166D852F8A973C6CB107EE /* Pods_budgetManager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,7 +59,6 @@
 				1F982B3821735CCF006B923A /* budgetManager */,
 				1F982B3721735CCF006B923A /* Products */,
 				EA5AB362AA7ABF9E2BC7038D /* Pods */,
-				71FBEE21FEFA906BB9541B57 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,6 +73,7 @@
 		1F982B3821735CCF006B923A /* budgetManager */ = {
 			isa = PBXGroup;
 			children = (
+				1FDB00DF21B1A44B00CE0616 /* BaseClasses */,
 				B3D2454A217E368F00400B61 /* Screens */,
 				B3D24549217E367100400B61 /* Models */,
 				B3D24548217E365400400B61 /* Managers */,
@@ -87,12 +86,19 @@
 			path = budgetManager;
 			sourceTree = "<group>";
 		};
-		71FBEE21FEFA906BB9541B57 /* Frameworks */ = {
+		1FDB00DE21B1A0ED00CE0616 /* LogInScreen */ = {
 			isa = PBXGroup;
 			children = (
-				B6FAE290A1737A5F52D35FD3 /* Pods_budgetManager.framework */,
 			);
-			name = Frameworks;
+			path = LogInScreen;
+			sourceTree = "<group>";
+		};
+		1FDB00DF21B1A44B00CE0616 /* BaseClasses */ = {
+			isa = PBXGroup;
+			children = (
+				1FDB00E021B1A46600CE0616 /* BaseController.swift */,
+			);
+			path = BaseClasses;
 			sourceTree = "<group>";
 		};
 		B3D24547217E363800400B61 /* Resources */ = {
@@ -125,6 +131,7 @@
 		B3D2454A217E368F00400B61 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				1FDB00DE21B1A0ED00CE0616 /* LogInScreen */,
 				B3D2454D217E36BA00400B61 /* TableOfExpencesScreen */,
 				B3D2454C217E36B000400B61 /* PickerViewScreen */,
 			);
@@ -281,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FA687A6217A2AEE002D1361 /* TableOfExpensesCell.swift in Sources */,
+				1FDB00E121B1A46600CE0616 /* BaseController.swift in Sources */,
 				1FFE883021A2B904007965A9 /* UserExpenseType.swift in Sources */,
 				1FA687A22179E098002D1361 /* Expense.swift in Sources */,
 				1FA687A4217A1B9B002D1361 /* TableOfExpensesViewController.swift in Sources */,
