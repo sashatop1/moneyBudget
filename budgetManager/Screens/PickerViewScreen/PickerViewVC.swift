@@ -52,7 +52,11 @@ class PickerViewVC: BaseController {
         super.viewDidLoad()
         configureView()
         
+        //связку делегатов можно вынести в отдельный метод, ты ведь для пикера делегаты связываешь в configureView()
         textFieldAmount.delegate = self
+        //1) незачем делать эту проверку, экран с пустым текстфилдом появляется, значит всегда будет trueи всегда выполнится блок
+        //2) "text!" не стал бы делать
+        //3) == true можно убрать, сравнение излишне потому что isEmpty уже Bool
         if textFieldAmount.text!.isEmpty == true {
             addChoiceButton.isUserInteractionEnabled = false
             addChoiceButton.alpha = 0.7
@@ -64,16 +68,23 @@ class PickerViewVC: BaseController {
         moneyTypePicker.dataSource = self
         moneyTypePicker.delegate = self
         
+        /* хорошо, что попробовал кодом настраивать экран, но обычно для разгрузки класса как можно больше
+           настройки делается в сториборде.
+           + совет: вынеси основные цвета в отдельный файл с константами чтобы каждый раз не указывать значения RGBA,
+                    так можно легко где-нибудь лажануть
+         */
+        //.init обычно е используется, лучше юзать конструктор UIColor(red:green:blue:alpha)
         self.view.backgroundColor = UIColor.init(red: 0.22, green: 0.28, blue: 0.31, alpha: 1)
         self.textFieldAmount.backgroundColor = UIColor.init(red: 0.38, green: 0.45, blue: 0.48, alpha: 1)
         self.textFieldExpenseType.backgroundColor = UIColor.init(red: 0.38, green: 0.45, blue: 0.48, alpha: 1)
-        self.textFieldAmount.textColor = UIColor.white
+        self.textFieldAmount.textColor = UIColor.white // можно заменить на просто .white
         self.textFieldExpenseType.textColor = UIColor.white
+        // тут можно использовать UIColor(white: alpha:)
         self.textFieldAmount.attributedPlaceholder = NSAttributedString(string: "Enter amount", attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(red: 1, green: 1, blue: 1, alpha: 0.4)])
         self.textFieldExpenseType.attributedPlaceholder = NSAttributedString(string: "Enter new type", attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(red: 1, green: 1, blue: 1, alpha: 0.4)])
-        self.createTypeButton.backgroundColor = UIColor.clear
+        self.createTypeButton.backgroundColor = UIColor.clear //.clear
         navigationController?.navigationBar.barTintColor = UIColor.init(red: 0.06, green: 0.13, blue: 0.15, alpha: 1)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:  UIColor.init(red: 1, green: 1, blue: 1, alpha: 1)]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:  UIColor.init(red: 1, green: 1, blue: 1, alpha: 1)] // .white
         if BudgetManager.DBHasEntries(ofType: UserExpenseType.self) == true { 
         }
     }
@@ -96,7 +107,7 @@ extension PickerViewVC {
         let userExpense = Expense(amountOfUserPick: doubleValue, userPick: userChoice)
         BudgetManager.addObject(object: userExpense)
         
-        textFieldAmount.text = ""
+        textFieldAmount.text = "" // так норм вариант, но жека когда-то говорил, что оптимальнее юзать removeAll() (не особо важно просто чтобы знал)
     }
 }
 
@@ -117,6 +128,11 @@ extension PickerViewVC: UIPickerViewDelegate, UIPickerViewDataSource, UITextFiel
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let text = (textFieldAmount.text! as NSString).replacingCharacters(in: range, with: string)
+        /* то что я говорил, про отрефакторить этот кусок кода:
+         я бы сделал так
+         addChoiceButton.isUserInteractionEnabled = !text.isEmpty
+         addChoiceButton.alpha = !text.isEmpty ? 1 : 0
+ */
         if !text.isEmpty {
             addChoiceButton.isUserInteractionEnabled = true
             addChoiceButton.alpha = 1
