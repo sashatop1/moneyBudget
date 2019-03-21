@@ -12,12 +12,10 @@ import RealmSwift
 class Expense: Object {
     @objc dynamic var amountExpense: Double = 0
     @objc dynamic var expenseType: String = ""
-    //@objc dynamic var userExpenseType: String = "" 
     
     convenience init(amountOfUserPick: Double, userPick: String) {
         self.init()
         
-        //self.userExpenseType = userExpenseType
         self.amountExpense = amountOfUserPick
         self.expenseType = userPick
     }

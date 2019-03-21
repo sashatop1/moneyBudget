@@ -10,9 +10,8 @@ import UIKit
 
 class TableOfExpensesCell: UITableViewCell {
     static let identifier = "MainVCCell"
-    
+
     //лучше удалить аутлет, который не ссылается ни на что в сториборде
-    //@IBOutlet weak var colorView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
@@ -21,6 +20,8 @@ class TableOfExpensesCell: UITableViewCell {
         descriptionLabel.text = String(model.amountExpense)
         
     }
+
+    
 }
 
 

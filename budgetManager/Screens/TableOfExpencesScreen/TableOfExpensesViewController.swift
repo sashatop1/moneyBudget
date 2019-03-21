@@ -17,11 +17,12 @@ class TableOfExpensesViewController: UIViewController {
     /*
      "// MARK: -" используется для логического разделения сегментов кода друг от друга
      в самом коде и сверху в навигаторе (нажми на  С TableOfExpencesViewController сверху)
-    */
+     */
     
     // MARK: - Properties
     var arrayOfTypes = MoneyType.allCasesDescription() //Эти свойства нигде не используются, надо удалить
     var cellEntities = [Expense]()
+    var cellIsOpened = false
     
     // MARK: - @IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -30,7 +31,6 @@ class TableOfExpensesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
-        
         self.tableView.backgroundColor = UIColor.init(red: 0.22, green: 0.28, blue: 0.31, alpha: 1)
         
     }
@@ -57,6 +57,36 @@ class TableOfExpensesViewController: UIViewController {
         let currentSection = getSections()[section]
         return BudgetManager.allObjects().filter { $0.expenseType == currentSection }
     }
+    @objc func handleTap(button: UIButton) {
+        let section = button.tag
+
+        //try to close the section first by deleting the rows
+        var expenses = [BudgetManager.allObjects()[0].expenseType]
+        var indexPaths = [IndexPath]()
+        for row in expenses.indices {
+            let indexPath = IndexPath(row: row, section: section)
+            indexPaths.append(indexPath)
+            print(section, row)
+        }
+        expenses.removeAll()
+        
+        //tableView.deleteRows(at: indexPaths, with: .fade)
+        print(button.tag)
+        
+        var isExpanded = false
+        
+        if isExpanded == false {
+            //tableView.deleteRows(at: indexPaths, with: .fade)
+            button.setTitle("Open", for: .normal)
+            isExpanded = true
+        } else if isExpanded == true {
+            //tableView.insertRows(at: indexPaths, with: .fade)
+            button.setTitle("Close", for: .normal)
+            isExpanded = false
+        } else {
+            
+        }
+    }
 }
 
 /*
@@ -77,17 +107,20 @@ extension TableOfExpensesViewController: UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return getRowsForSection(section).count
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableOfExpensesCell.identifier) as! TableOfExpensesCell
         let expence = getRowsForSection(indexPath.section)[indexPath.row]
         cell.setupCell(withModel: expence)
+        cell.textLabel?.textColor = UIColor.white
         return cell
     }
     //cell color
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = UIColor.init(red: 0.22, green: 0.28, blue: 0.31, alpha: 1)
+        cell.selectedBackgroundView?.backgroundColor = UIColor.init(red: 0.22, green: 0.28, blue: 0.31, alpha: 1)
     }
     
     //deletebutton
@@ -96,6 +129,25 @@ extension TableOfExpensesViewController: UITableViewDelegate, UITableViewDataSou
             BudgetManager.deleteObject(object: getRowsForSection(indexPath.section)[indexPath.row])
             tableView.reloadData()
         }
-}
-}
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let button = UIButton(type: .system)
+        button.setTitle("Close", for: .normal)
+        button.backgroundColor = .white
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        
+        button.addTarget(self, action: #selector(handleTap), for: .touchUpInside)
+        button.tag = section
+        
+        return button
+    
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 36
+    }
 
+}

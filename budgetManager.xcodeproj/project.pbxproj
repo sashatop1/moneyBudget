@@ -13,6 +13,7 @@
 		1F982B3F21735CCF006B923A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F982B3D21735CCF006B923A /* Main.storyboard */; };
 		1F982B4121735CD3006B923A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F982B4021735CD3006B923A /* Assets.xcassets */; };
 		1F982B4421735CD3006B923A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F982B4221735CD3006B923A /* LaunchScreen.storyboard */; };
+		1F9944BC222D78FF004062FE /* TableOfExpensesHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9944BB222D78FF004062FE /* TableOfExpensesHeader.swift */; };
 		1FA687A22179E098002D1361 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA687A12179E098002D1361 /* Expense.swift */; };
 		1FA687A4217A1B9B002D1361 /* TableOfExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA687A3217A1B9B002D1361 /* TableOfExpensesViewController.swift */; };
 		1FA687A6217A2AEE002D1361 /* TableOfExpensesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA687A5217A2AEE002D1361 /* TableOfExpensesCell.swift */; };
@@ -31,6 +32,7 @@
 		1F982B4021735CD3006B923A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F982B4321735CD3006B923A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F982B4521735CD3006B923A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F9944BB222D78FF004062FE /* TableOfExpensesHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableOfExpensesHeader.swift; sourceTree = "<group>"; };
 		1FA687A12179E098002D1361 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		1FA687A3217A1B9B002D1361 /* TableOfExpensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableOfExpensesViewController.swift; sourceTree = "<group>"; };
 		1FA687A5217A2AEE002D1361 /* TableOfExpensesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableOfExpensesCell.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			children = (
 				1FA687A3217A1B9B002D1361 /* TableOfExpensesViewController.swift */,
 				1FA687A5217A2AEE002D1361 /* TableOfExpensesCell.swift */,
+				1F9944BB222D78FF004062FE /* TableOfExpensesHeader.swift */,
 			);
 			path = TableOfExpencesScreen;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				1FA687A6217A2AEE002D1361 /* TableOfExpensesCell.swift in Sources */,
 				1FDB00E121B1A46600CE0616 /* BaseController.swift in Sources */,
 				1FFE883021A2B904007965A9 /* UserExpenseType.swift in Sources */,
+				1F9944BC222D78FF004062FE /* TableOfExpensesHeader.swift in Sources */,
 				1FA687A22179E098002D1361 /* Expense.swift in Sources */,
 				1FA687A4217A1B9B002D1361 /* TableOfExpensesViewController.swift in Sources */,
 				1F982B3C21735CCF006B923A /* PickerViewVC.swift in Sources */,
@@ -443,7 +447,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7YBS2ZNK94;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = budgetManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -463,7 +467,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7YBS2ZNK94;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = budgetManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				LD_RUNPATH_SEARCH_PATHS = (

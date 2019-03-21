@@ -31,6 +31,7 @@ enum MoneyType: CaseIterable {
         //короче и проще
         return MoneyType.allCases.map { $0.description }
     }
+    
 }
 
 class PickerViewVC: BaseController {
@@ -45,8 +46,8 @@ class PickerViewVC: BaseController {
     
     // MARK: - Properties
     var selectedAmount: Double = 0
+    var pickerviewValues = MoneyType.allCasesDescription()
     var userChoice: String = MoneyType.allCasesDescription().first!
-    var titlesForPicker = MoneyType.allCasesDescription()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,9 +70,9 @@ class PickerViewVC: BaseController {
         moneyTypePicker.delegate = self
         
         /* хорошо, что попробовал кодом настраивать экран, но обычно для разгрузки класса как можно больше
-           настройки делается в сториборде.
-           + совет: вынеси основные цвета в отдельный файл с константами чтобы каждый раз не указывать значения RGBA,
-                    так можно легко где-нибудь лажануть
+         настройки делается в сториборде.
+         + совет: вынеси основные цвета в отдельный файл с константами чтобы каждый раз не указывать значения RGBA,
+         так можно легко где-нибудь лажануть
          */
         //.init обычно е используется, лучше юзать конструктор UIColor(red:green:blue:alpha)
         self.view.backgroundColor = UIColor.init(red: 0.22, green: 0.28, blue: 0.31, alpha: 1)
@@ -89,17 +90,32 @@ class PickerViewVC: BaseController {
         }
     }
     
-   
+    func alert(title: String, message: String, style: UIAlertController.Style) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
+        let action = UIAlertAction(title: "Okay", style: .default) { (action) in
+            
+        }
+        alertController.addAction(action)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
 }
 
 // MARK: - @IBActions
 extension PickerViewVC {
     @IBAction func AddingNewType(_ sender: Any) {
-        guard let expenseTypeName = textFieldExpenseType.text else { return }
-        
+        let letters = NSCharacterSet.letters
+        guard let expenseTypeName = textFieldExpenseType.text, textFieldExpenseType.text?.rangeOfCharacter(from: letters) != nil else {
+            self.alert(title: "Error", message: "New expense type is invalid. Please fill the field correctly.", style: .alert)
+            return }
         let newExpenseType = UserExpenseType(userExpenseType: expenseTypeName)
         BudgetManager.addExpenseType(object: newExpenseType)
+        pickerviewValues.append(expenseTypeName)
+        moneyTypePicker.reloadAllComponents()
+        textFieldExpenseType.text?.removeAll()
     }
+    
     
     @IBAction func AddChoice(_ sender: Any) {
         guard let text = textFieldAmount.text, let doubleValue = Double(text) else { return }
@@ -107,8 +123,9 @@ extension PickerViewVC {
         let userExpense = Expense(amountOfUserPick: doubleValue, userPick: userChoice)
         BudgetManager.addObject(object: userExpense)
         
-        textFieldAmount.text = "" // так норм вариант, но жека когда-то говорил, что оптимальнее юзать removeAll() (не особо важно просто чтобы знал)
+        textFieldAmount.text?.removeAll() // так норм вариант, но жека когда-то говорил, что оптимальнее юзать removeAll() (не особо важно просто чтобы знал)
     }
+    
 }
 
 extension PickerViewVC: UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
@@ -117,14 +134,15 @@ extension PickerViewVC: UIPickerViewDelegate, UIPickerViewDataSource, UITextFiel
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: MoneyType.allCasesDescription()[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        return NSAttributedString(string: pickerviewValues[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return MoneyType.allCases.count
+        return pickerviewValues.count
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        userChoice = MoneyType.allCasesDescription()[row]
+        userChoice = pickerviewValues[row]
+        
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let text = (textFieldAmount.text! as NSString).replacingCharacters(in: range, with: string)
@@ -132,18 +150,17 @@ extension PickerViewVC: UIPickerViewDelegate, UIPickerViewDataSource, UITextFiel
          я бы сделал так
          addChoiceButton.isUserInteractionEnabled = !text.isEmpty
          addChoiceButton.alpha = !text.isEmpty ? 1 : 0
- */
+         */
         if !text.isEmpty {
             addChoiceButton.isUserInteractionEnabled = true
             addChoiceButton.alpha = 1
         } else {
             addChoiceButton.isUserInteractionEnabled = false
-            addChoiceButton.alpha = 0.7
+            addChoiceButton.alpha = 0
             
         }
         return true
-        
-    }
+        }
 }
 
 
