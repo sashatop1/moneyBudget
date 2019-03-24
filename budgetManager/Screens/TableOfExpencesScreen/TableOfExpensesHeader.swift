@@ -16,10 +16,15 @@ class TableOfExpensesHeader: UITableViewHeaderFooterView {
     private lazy var tap: UITapGestureRecognizer = {
         return UITapGestureRecognizer(target: self, action: #selector(handleTap))
     }()
+    
+    func setupHeader() {
+        self.textLabel?.textColor = UIColor.black
+    }
    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         addGestureRecognizer(tap)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

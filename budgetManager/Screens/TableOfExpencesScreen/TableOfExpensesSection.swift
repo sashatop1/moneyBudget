@@ -9,7 +9,7 @@
 import UIKit
 
 class TableOfExpensesSection {
-    var isExpanded: Bool = true //раскрыта секция или нет
+    var isExpanded: Bool = false //раскрыта секция или нет
     var name: String
     var array: [String]         //модели, которые в ячейки передаются
     

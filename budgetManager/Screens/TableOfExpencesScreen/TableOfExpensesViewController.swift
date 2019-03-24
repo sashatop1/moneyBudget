@@ -46,16 +46,13 @@ class TableOfExpensesViewController: UIViewController {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
         self.tableView.backgroundColor = UIColor.init(red: 0.22, green: 0.28, blue: 0.31, alpha: 1)
-        tableView.delegate = self
-        tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: .zero)
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //тут с текущей навигацией можно не вызывать reloadData так как таблица сама релоудится при первом заходе на экран
-        //tableView.reloadData()
+    
     }
     
     
@@ -73,36 +70,6 @@ class TableOfExpensesViewController: UIViewController {
         let currentSection = getSections()[section]
         return BudgetManager.allObjects().filter { $0.expenseType == currentSection }
     }
-//    @objc func handleTap(button: UIButton) {
-//        let section = button.tag
-//
-//        //try to close the section first by deleting the rows
-//        var expenses = [BudgetManager.allObjects()[0].expenseType]
-//        var indexPaths = [IndexPath]()
-//        for row in expenses.indices {
-//            let indexPath = IndexPath(row: row, section: section)
-//            indexPaths.append(indexPath)
-//            print(section, row)
-//        }
-//        expenses.removeAll()
-//
-//        //tableView.deleteRows(at: indexPaths, with: .fade)
-//        print(button.tag)
-//
-//        var isExpanded = false
-//
-//        if isExpanded == false {
-//            //tableView.deleteRows(at: indexPaths, with: .fade)
-//            button.setTitle("Open", for: .normal)
-//            isExpanded = true
-//        } else if isExpanded == true {
-//            //tableView.insertRows(at: indexPaths, with: .fade)
-//            button.setTitle("Close", for: .normal)
-//            isExpanded = false
-//        } else {
-//
-//        }
-//    }
 }
 
 /*
@@ -118,19 +85,22 @@ extension TableOfExpensesViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
         return getSectionTitles()[section]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return getRowsForSection(section).count
-        return sections[section].isExpanded ? sections[section].array.count : 0
+        if sections[section].isExpanded == true { return getRowsForSection(section).count }
+        else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableOfExpensesCell.identifier) as! TableOfExpensesCell
         let expence = getRowsForSection(indexPath.section)[indexPath.row]
         cell.setupCell(withModel: expence)
-        cell.textLabel?.textColor = UIColor.white
+        cell.textLabel?.textColor = UIColor.black
         return cell
     }
     //cell color
@@ -148,8 +118,8 @@ extension TableOfExpensesViewController: UITableViewDelegate, UITableViewDataSou
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: TableOfExpensesHeader.headerIdentifier) as! TableOfExpensesHeader
+        header.setupHeader()
         header.textLabel?.text = sections[section].name
-        
         header.onTap = { [weak self] in
             guard let self = self else { return }
             self.sections[section].isExpanded.toggle()
@@ -170,11 +140,11 @@ extension TableOfExpensesViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 60
+        return 44
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        return 60
+        return 44
     }
 
 }
