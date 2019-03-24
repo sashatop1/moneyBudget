@@ -24,15 +24,31 @@ class TableOfExpensesViewController: UIViewController {
     var cellEntities = [Expense]()
     var cellIsOpened = false
     
+    private lazy var sections: [TableOfExpensesSection] = {
+        let array = ["one", "two", "three"]
+        return [
+            TableOfExpensesSection(name: "one", array: array),
+            TableOfExpensesSection(name: "two", array: array),
+            TableOfExpensesSection(name: "three", array: array),
+            TableOfExpensesSection(name: "four", array: array)
+        ]
+    }()
+    
     // MARK: - @IBOutlets
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView! {
+        didSet {
+            tableView.register(TableOfExpensesHeader.self, forHeaderFooterViewReuseIdentifier: TableOfExpensesHeader.headerIdentifier)
+        }
+    }
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
         self.tableView.backgroundColor = UIColor.init(red: 0.22, green: 0.28, blue: 0.31, alpha: 1)
-        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView(frame: .zero)
     }
     
     
@@ -57,36 +73,36 @@ class TableOfExpensesViewController: UIViewController {
         let currentSection = getSections()[section]
         return BudgetManager.allObjects().filter { $0.expenseType == currentSection }
     }
-    @objc func handleTap(button: UIButton) {
-        let section = button.tag
-
-        //try to close the section first by deleting the rows
-        var expenses = [BudgetManager.allObjects()[0].expenseType]
-        var indexPaths = [IndexPath]()
-        for row in expenses.indices {
-            let indexPath = IndexPath(row: row, section: section)
-            indexPaths.append(indexPath)
-            print(section, row)
-        }
-        expenses.removeAll()
-        
-        //tableView.deleteRows(at: indexPaths, with: .fade)
-        print(button.tag)
-        
-        var isExpanded = false
-        
-        if isExpanded == false {
-            //tableView.deleteRows(at: indexPaths, with: .fade)
-            button.setTitle("Open", for: .normal)
-            isExpanded = true
-        } else if isExpanded == true {
-            //tableView.insertRows(at: indexPaths, with: .fade)
-            button.setTitle("Close", for: .normal)
-            isExpanded = false
-        } else {
-            
-        }
-    }
+//    @objc func handleTap(button: UIButton) {
+//        let section = button.tag
+//
+//        //try to close the section first by deleting the rows
+//        var expenses = [BudgetManager.allObjects()[0].expenseType]
+//        var indexPaths = [IndexPath]()
+//        for row in expenses.indices {
+//            let indexPath = IndexPath(row: row, section: section)
+//            indexPaths.append(indexPath)
+//            print(section, row)
+//        }
+//        expenses.removeAll()
+//
+//        //tableView.deleteRows(at: indexPaths, with: .fade)
+//        print(button.tag)
+//
+//        var isExpanded = false
+//
+//        if isExpanded == false {
+//            //tableView.deleteRows(at: indexPaths, with: .fade)
+//            button.setTitle("Open", for: .normal)
+//            isExpanded = true
+//        } else if isExpanded == true {
+//            //tableView.insertRows(at: indexPaths, with: .fade)
+//            button.setTitle("Close", for: .normal)
+//            isExpanded = false
+//        } else {
+//
+//        }
+//    }
 }
 
 /*
@@ -106,8 +122,8 @@ extension TableOfExpensesViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return getRowsForSection(section).count
-        
+        //return getRowsForSection(section).count
+        return sections[section].isExpanded ? sections[section].array.count : 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -131,23 +147,34 @@ extension TableOfExpensesViewController: UITableViewDelegate, UITableViewDataSou
         }
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let button = UIButton(type: .system)
-        button.setTitle("Close", for: .normal)
-        button.backgroundColor = .white
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: TableOfExpensesHeader.headerIdentifier) as! TableOfExpensesHeader
+        header.textLabel?.text = sections[section].name
         
-        button.addTarget(self, action: #selector(handleTap), for: .touchUpInside)
-        button.tag = section
-        
-        return button
+        header.onTap = { [weak self] in
+            guard let self = self else { return }
+            self.sections[section].isExpanded.toggle()
+            self.tableView.reloadSections(IndexSet(arrayLiteral: section), with: .fade)
+        }
+        return header
     
     }
     
     
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
+    }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 36
+        return 60
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return 60
     }
 
 }

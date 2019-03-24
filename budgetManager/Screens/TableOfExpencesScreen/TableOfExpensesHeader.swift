@@ -11,19 +11,23 @@ import UIKit
 class TableOfExpensesHeader: UITableViewHeaderFooterView {
     
     static let headerIdentifier = "headerId"
-    var headerCellSection: Int?
-    let header = UITableViewHeaderFooterView()
+    var onTap: (() -> Void)?
     
+    private lazy var tap: UITapGestureRecognizer = {
+        return UITapGestureRecognizer(target: self, action: #selector(handleTap))
+    }()
    
-    func setupHeader() {
-        
-        let tap = UIGestureRecognizer(target: self, action:#selector(handleTap(_:)))
-        self.addGestureRecognizer(tap)
-        header.backgroundColor = UIColor.white
-        
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
+        addGestureRecognizer(tap)
     }
-    @objc func handleTap(_ sender: UITapGestureRecognizer) {
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+        onTap?()
     }
     
 }
