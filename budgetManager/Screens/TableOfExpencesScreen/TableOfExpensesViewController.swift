@@ -20,19 +20,35 @@ class TableOfExpensesViewController: UIViewController {
      */
     
     // MARK: - Properties
-    var arrayOfTypes = MoneyType.allCasesDescription() //Эти свойства нигде не используются, надо удалить
-    var cellEntities = [Expense]()
-    var cellIsOpened = false
     
-    private lazy var sections: [TableOfExpensesSection] = {
-        let array = ["one", "two", "three"]
-        return [
-            TableOfExpensesSection(name: "one", array: array),
-            TableOfExpensesSection(name: "two", array: array),
-            TableOfExpensesSection(name: "three", array: array),
-            TableOfExpensesSection(name: "four", array: array)
-        ]
-    }()
+//    private lazy var sections: [TableOfExpensesSection] = {
+//        let array = ["one", "two", "three"]
+//        return [
+//            TableOfExpensesSection(name: "one", array: array),
+//            TableOfExpensesSection(name: "two", array: array),
+//            TableOfExpensesSection(name: "three", array: array),
+//            TableOfExpensesSection(name: "four", array: array),
+//            TableOfExpensesSection(name: "five", array: array),
+//            TableOfExpensesSection(name: "six", array: array)
+//        ]
+//
+//        //сделать сгруппированный массив секций
+//
+//        // () в конце условия означают, что этот блок выполняется
+//    }()
+    
+    
+    
+    var groupedSections: [TableOfExpensesSection] {
+        let sections = BudgetManager.allObjects()
+        let names = sections.map { $0.expenseType }.unique
+        return names.map { group -> TableOfExpensesSection in
+            let correspondingSections = sections.filter { $0.expenseType == group }
+            return TableOfExpensesSection(name: group, array: correspondingSections)
+        }
+    }
+    
+    
     
     // MARK: - @IBOutlets
     @IBOutlet private weak var tableView: UITableView! {
@@ -44,7 +60,6 @@ class TableOfExpensesViewController: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.tableFooterView = UIView()
         self.tableView.backgroundColor = UIColor.init(red: 0.22, green: 0.28, blue: 0.31, alpha: 1)
         tableView.tableFooterView = UIView(frame: .zero)
     }
@@ -59,7 +74,8 @@ class TableOfExpensesViewController: UIViewController {
     
     //MARK: - Support methods
     func getSections() -> [String] {
-        return BudgetManager.allObjects().map { $0.expenseType }.unique.sorted()
+        let array = BudgetManager.allObjects().map { $0.expenseType }.unique.sorted()
+        return array
     }
     
     func getSectionTitles() -> [String] {
@@ -90,23 +106,21 @@ extension TableOfExpensesViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if sections[section].isExpanded == true { return getRowsForSection(section).count }
+        if groupedSections[section].isExpanded == true { return getRowsForSection(section).count }
         else {
             return 0
         }
     }
     
+    //+colorCell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableOfExpensesCell.identifier) as! TableOfExpensesCell
         let expence = getRowsForSection(indexPath.section)[indexPath.row]
         cell.setupCell(withModel: expence)
         cell.textLabel?.textColor = UIColor.black
-        return cell
-    }
-    //cell color
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = UIColor.init(red: 0.22, green: 0.28, blue: 0.31, alpha: 1)
         cell.selectedBackgroundView?.backgroundColor = UIColor.init(red: 0.22, green: 0.28, blue: 0.31, alpha: 1)
+        return cell
     }
     
     //deletebutton
@@ -119,10 +133,11 @@ extension TableOfExpensesViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: TableOfExpensesHeader.headerIdentifier) as! TableOfExpensesHeader
         header.setupHeader()
-        header.textLabel?.text = sections[section].name
+        header.textLabel?.text = self.groupedSections[section].name
+        var needToogle = groupedSections[section].isExpanded
         header.onTap = { [weak self] in
             guard let self = self else { return }
-            self.sections[section].isExpanded.toggle()
+            needToogle.toggle()
             self.tableView.reloadSections(IndexSet(arrayLiteral: section), with: .fade)
         }
         return header

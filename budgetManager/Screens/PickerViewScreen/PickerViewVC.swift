@@ -122,8 +122,7 @@ extension PickerViewVC {
         
         let userExpense = Expense(amountOfUserPick: doubleValue, userPick: userChoice)
         BudgetManager.addObject(object: userExpense)
-        
-        textFieldAmount.text?.removeAll() // так норм вариант, но жека когда-то говорил, что оптимальнее юзать removeAll() (не особо важно просто чтобы знал)
+        textFieldAmount.text?.removeAll()
     }
     
 }
@@ -146,11 +145,6 @@ extension PickerViewVC: UIPickerViewDelegate, UIPickerViewDataSource, UITextFiel
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let text = (textFieldAmount.text! as NSString).replacingCharacters(in: range, with: string)
-        /* то что я говорил, про отрефакторить этот кусок кода:
-         я бы сделал так
-         addChoiceButton.isUserInteractionEnabled = !text.isEmpty
-         addChoiceButton.alpha = !text.isEmpty ? 1 : 0
-         */
         if !text.isEmpty {
             addChoiceButton.isUserInteractionEnabled = true
             addChoiceButton.alpha = 1

@@ -9,11 +9,12 @@
 import UIKit
 
 class TableOfExpensesSection {
-    var isExpanded: Bool = false //раскрыта секция или нет
+    var isExpanded: Bool = true
     var name: String
-    var array: [String]         //модели, которые в ячейки передаются
+    var array: [Expense]
     
-    init(name: String, array: [String]) {
+    init(name: String, array: [Expense]) {
+        
         self.name = name
         self.array = array
     }
