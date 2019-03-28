@@ -19,6 +19,9 @@ class TableOfExpensesCell: UITableViewCell {
         nameLabel.text = model.expenseType
         descriptionLabel.text = String(model.amountExpense)
         
+        self.textLabel?.textColor = UIColor.black
+        self.backgroundColor = UIColor.init(red: 0.22, green: 0.28, blue: 0.31, alpha: 1)
+        self.selectedBackgroundView?.backgroundColor = UIColor.init(red: 0.22, green: 0.28, blue: 0.31, alpha: 1)
     }
 
     

@@ -28,7 +28,11 @@ enum MoneyType: CaseIterable {
     }
     
     static func allCasesDescription() -> [String] {
-        //короче и проще
+        //короче и прощe
+        return BudgetManager.allExpenseTypes().map { $0.userExpenesType }
+        //return MoneyType.allCases.map { $0.description }
+    }
+    static func allCasesDesctiptionDefault() -> [String] {
         return MoneyType.allCases.map { $0.description }
     }
     
@@ -42,7 +46,9 @@ class PickerViewVC: BaseController {
     @IBOutlet weak var textFieldExpenseType: UITextField!
     @IBOutlet weak var addChoiceButton: UIButton!
     @IBOutlet weak var createTypeButton: UIButton!
+    @IBOutlet weak var deleteTypeButton: UIButton!
     
+   
     
     // MARK: - Properties
     var selectedAmount: Double = 0
@@ -116,10 +122,13 @@ extension PickerViewVC {
         textFieldExpenseType.text?.removeAll()
     }
     
+    @IBAction func deleteTypeAction(_ sender: Any) {
+       print(2)
+        
+    }
     
     @IBAction func AddChoice(_ sender: Any) {
         guard let text = textFieldAmount.text, let doubleValue = Double(text) else { return }
-        
         let userExpense = Expense(amountOfUserPick: doubleValue, userPick: userChoice)
         BudgetManager.addObject(object: userExpense)
         textFieldAmount.text?.removeAll()
@@ -133,14 +142,16 @@ extension PickerViewVC: UIPickerViewDelegate, UIPickerViewDataSource, UITextFiel
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: pickerviewValues[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        let allStrings = MoneyType.allCasesDesctiptionDefault() + pickerviewValues
+        return NSAttributedString(string: allStrings[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerviewValues.count
+        return pickerviewValues.count + MoneyType.allCasesDesctiptionDefault().count
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        userChoice = pickerviewValues[row]
+        let allStrings = pickerviewValues + MoneyType.allCasesDesctiptionDefault()
+        userChoice = allStrings[row]
         
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

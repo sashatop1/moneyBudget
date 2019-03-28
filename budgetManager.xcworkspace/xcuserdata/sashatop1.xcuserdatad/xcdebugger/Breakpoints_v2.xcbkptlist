@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "budgetManager/Screens/TableOfExpencesScreen/TableOfExpensesViewController.swift"
-            timestampString = "575375176.67914"
+            filePath = "budgetManager/Screens/PickerViewScreen/PickerViewVC.swift"
+            timestampString = "575467237.8107131"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
-            landmarkName = "tableView(_:viewForHeaderInSection:)"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "AddingNewType(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

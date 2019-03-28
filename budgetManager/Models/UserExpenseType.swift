@@ -6,7 +6,7 @@
 //  Copyright © 2018 Александ. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import RealmSwift
 
 class UserExpenseType: Object {

@@ -36,6 +36,12 @@ class BudgetManager {
         
     }
     
+    static func deleteExpenseType(object: UserExpenseType) {
+        try! realm.write {
+            realm.delete(object)
+        }
+    }
+    
     static func DBHasEntries(ofType type: UserExpenseType.Type) -> Bool {
         return !realm.objects(type).isEmpty
 
@@ -46,6 +52,10 @@ class BudgetManager {
         try! realm.write {
             realm.delete(object)
         }
+    }
+    
+    static func allExpenseTypes() -> [UserExpenseType] {
+        return Array(realm.objects(UserExpenseType.self))
     }
     
     static func getTotalExpenses(forExpenseType type: String) -> Int {

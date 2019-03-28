@@ -20,33 +20,15 @@ class TableOfExpensesViewController: UIViewController {
      */
     
     // MARK: - Properties
-    
-//    private lazy var sections: [TableOfExpensesSection] = {
-//        let array = ["one", "two", "three"]
-//        return [
-//            TableOfExpensesSection(name: "one", array: array),
-//            TableOfExpensesSection(name: "two", array: array),
-//            TableOfExpensesSection(name: "three", array: array),
-//            TableOfExpensesSection(name: "four", array: array),
-//            TableOfExpensesSection(name: "five", array: array),
-//            TableOfExpensesSection(name: "six", array: array)
-//        ]
-//
-//        //сделать сгруппированный массив секций
-//
-//        // () в конце условия означают, что этот блок выполняется
-//    }()
-    
-    
-    
-    var groupedSections: [TableOfExpensesSection] {
+        var groupedSections: [TableOfExpensesSection] = {
         let sections = BudgetManager.allObjects()
         let names = sections.map { $0.expenseType }.unique
         return names.map { group -> TableOfExpensesSection in
             let correspondingSections = sections.filter { $0.expenseType == group }
             return TableOfExpensesSection(name: group, array: correspondingSections)
         }
-    }
+    }()
+    //=(перед блоком) и  () в конце условия означают, что этот блок выполняется
     
     
     
@@ -73,93 +55,75 @@ class TableOfExpensesViewController: UIViewController {
     
     
     //MARK: - Support methods
-    func getSections() -> [String] {
-        let array = BudgetManager.allObjects().map { $0.expenseType }.unique.sorted()
-        return array
+   func formTitleForSection(section: String) -> String {
+        return "\(section): Total sum = \(BudgetManager.getTotalExpenses(forExpenseType: section))"
     }
     
-    func getSectionTitles() -> [String] {
-        return getSections().map { "\($0): Total sum = \(BudgetManager.getTotalExpenses(forExpenseType: $0))" }
-    }
     
-    func getRowsForSection(_ section: Int) -> [Expense] {
-        let currentSection = getSections()[section]
-        return BudgetManager.allObjects().filter { $0.expenseType == currentSection }
-    }
 }
-
-/*
- estension так же можно использовать для логического разделения.
- обычно в 1 extension реализация 1 функционала/протокола
- */
-
 // MARK: - UITableViewDelegate & UITableViewDataSource
 extension TableOfExpensesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return getSections().count
+        return groupedSections.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        return getSectionTitles()[section]
+        return formTitleForSection(section: groupedSections[section].name)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if groupedSections[section].isExpanded == true { return getRowsForSection(section).count }
-        else {
-            return 0
-        }
+        return groupedSections[section].isExpanded ? groupedSections[section].array.count : 0
     }
     
     //+colorCell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableOfExpensesCell.identifier) as! TableOfExpensesCell
-        let expence = getRowsForSection(indexPath.section)[indexPath.row]
-        cell.setupCell(withModel: expence)
-        cell.textLabel?.textColor = UIColor.black
-        cell.backgroundColor = UIColor.init(red: 0.22, green: 0.28, blue: 0.31, alpha: 1)
-        cell.selectedBackgroundView?.backgroundColor = UIColor.init(red: 0.22, green: 0.28, blue: 0.31, alpha: 1)
+        let expense = groupedSections[indexPath.section].array[indexPath.row]
+        cell.setupCell(withModel: expense)
         return cell
     }
     
     //deletebutton
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
-            BudgetManager.deleteObject(object: getRowsForSection(indexPath.section)[indexPath.row])
+            BudgetManager.deleteObject(object: groupedSections[indexPath.section].array[indexPath.row])
+            groupedSections[indexPath.section].array.remove(at: indexPath.row)
+            if groupedSections[indexPath.section].array.isEmpty {
+                groupedSections.remove(at: indexPath.section)
+            }
             tableView.reloadData()
         }
     }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: TableOfExpensesHeader.headerIdentifier) as! TableOfExpensesHeader
         header.setupHeader()
-        header.textLabel?.text = self.groupedSections[section].name
-        var needToogle = groupedSections[section].isExpanded
+        header.textLabel?.textColor = .black
         header.onTap = { [weak self] in
-            guard let self = self else { return }
-            needToogle.toggle()
-            self.tableView.reloadSections(IndexSet(arrayLiteral: section), with: .fade)
+            guard let weakSelf = self else { return }
+            header.textLabel?.textColor = .black
+            weakSelf.groupedSections[section].isExpanded.toggle()
+            weakSelf.tableView.reloadSections(IndexSet(arrayLiteral: section), with: .fade)
         }
         return header
     
     }
     
-    
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
-    }
+//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 44
+//    }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 44
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        return 44
-    }
+//    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+//        return 44
+//    }
 
 }

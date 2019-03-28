@@ -186,21 +186,34 @@
                                     <segue destination="piX-nO-U0S" kind="show" id="KvT-He-9ar"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlF-kr-yvb">
+                                <rect key="frame" x="108" y="625" width="158" height="30"/>
+                                <state key="normal" title="Delete expense type">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteTypeAction:" destination="1IX-O4-o3w" eventType="touchUpInside" id="HvL-t2-0Qw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="W2S-Pz-esG" firstAttribute="trailing" secondItem="fy1-aO-fys" secondAttribute="trailing" constant="90" id="1iw-lI-UqQ"/>
                             <constraint firstItem="fy1-aO-fys" firstAttribute="leading" secondItem="W2S-Pz-esG" secondAttribute="leading" constant="90" id="1pS-Ac-BNs"/>
                             <constraint firstItem="37H-l1-PjQ" firstAttribute="top" secondItem="um5-XN-slU" secondAttribute="bottom" constant="12" id="39w-Xj-dlh"/>
+                            <constraint firstItem="W2S-Pz-esG" firstAttribute="trailing" secondItem="nlF-kr-yvb" secondAttribute="trailing" constant="109" id="3lA-jc-dfI"/>
                             <constraint firstItem="QNy-b0-kC6" firstAttribute="leading" secondItem="W2S-Pz-esG" secondAttribute="leading" constant="60" id="5AC-Z3-8QP"/>
                             <constraint firstItem="W2S-Pz-esG" firstAttribute="trailing" secondItem="QNy-b0-kC6" secondAttribute="trailing" constant="60" id="5pf-rr-NKm"/>
+                            <constraint firstItem="nlF-kr-yvb" firstAttribute="leading" secondItem="W2S-Pz-esG" secondAttribute="leading" constant="108" id="6Jq-Ae-7Vm"/>
                             <constraint firstItem="Kpa-fk-hKv" firstAttribute="leading" secondItem="W2S-Pz-esG" secondAttribute="leading" constant="80" id="897-Pv-BfB"/>
                             <constraint firstItem="QNy-b0-kC6" firstAttribute="top" secondItem="3CO-Ha-vN5" secondAttribute="bottom" constant="135" id="KQ8-sG-NIW"/>
-                            <constraint firstItem="W2S-Pz-esG" firstAttribute="bottom" secondItem="Kpa-fk-hKv" secondAttribute="bottom" constant="50" id="KdU-U2-ewp"/>
                             <constraint firstItem="QNy-b0-kC6" firstAttribute="top" secondItem="37H-l1-PjQ" secondAttribute="bottom" constant="135" id="L5u-f1-wQd"/>
+                            <constraint firstItem="nlF-kr-yvb" firstAttribute="top" secondItem="Kpa-fk-hKv" secondAttribute="bottom" constant="8" id="LBa-65-Ytj"/>
                             <constraint firstItem="3CO-Ha-vN5" firstAttribute="top" secondItem="um5-XN-slU" secondAttribute="bottom" constant="12" id="Ll3-GK-aBz"/>
                             <constraint firstItem="um5-XN-slU" firstAttribute="leading" secondItem="W2S-Pz-esG" secondAttribute="leading" constant="30" id="OJs-sQ-pei"/>
                             <constraint firstItem="Kpa-fk-hKv" firstAttribute="top" secondItem="QNy-b0-kC6" secondAttribute="bottom" constant="35" id="UOY-8c-jHx"/>
+                            <constraint firstItem="W2S-Pz-esG" firstAttribute="bottom" secondItem="nlF-kr-yvb" secondAttribute="bottom" constant="12" id="Xp0-Ze-qDT"/>
                             <constraint firstItem="3CO-Ha-vN5" firstAttribute="leading" secondItem="W2S-Pz-esG" secondAttribute="leading" constant="30" id="eEL-9A-bhO"/>
                             <constraint firstItem="37H-l1-PjQ" firstAttribute="leading" secondItem="3CO-Ha-vN5" secondAttribute="trailing" constant="60" id="g1c-9r-CNO"/>
                             <constraint firstItem="W2S-Pz-esG" firstAttribute="trailing" secondItem="37H-l1-PjQ" secondAttribute="trailing" constant="100" id="g5R-Zd-k5p"/>
@@ -215,6 +228,7 @@
                     <connections>
                         <outlet property="addChoiceButton" destination="37H-l1-PjQ" id="X3n-2s-Jln"/>
                         <outlet property="createTypeButton" destination="Kpa-fk-hKv" id="5Vi-av-JBK"/>
+                        <outlet property="deleteTypeButton" destination="nlF-kr-yvb" id="2L1-JG-hsB"/>
                         <outlet property="moneyTypePicker" destination="um5-XN-slU" id="t1K-PJ-o3d"/>
                         <outlet property="textFieldAmount" destination="fy1-aO-fys" id="GrP-1X-o7j"/>
                         <outlet property="textFieldExpenseType" destination="QNy-b0-kC6" id="Flf-0p-3Nr"/>

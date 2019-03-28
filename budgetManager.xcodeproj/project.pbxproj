@@ -165,10 +165,10 @@
 		B3D2454D217E36BA00400B61 /* TableOfExpencesScreen */ = {
 			isa = PBXGroup;
 			children = (
-				1FA687A3217A1B9B002D1361 /* TableOfExpensesViewController.swift */,
 				1FA687A5217A2AEE002D1361 /* TableOfExpensesCell.swift */,
 				1F9944BB222D78FF004062FE /* TableOfExpensesHeader.swift */,
 				1F544F37224780A8007CEF05 /* TableOfExpensesSection.swift */,
+				1FA687A3217A1B9B002D1361 /* TableOfExpensesViewController.swift */,
 			);
 			path = TableOfExpencesScreen;
 			sourceTree = "<group>";
