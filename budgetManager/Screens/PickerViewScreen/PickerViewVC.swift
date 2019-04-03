@@ -53,8 +53,18 @@ class PickerViewVC: BaseController {
     // MARK: - Properties
     var selectedAmount: Double = 0
     var pickerviewValues = MoneyType.allCasesDescription()
-    var userChoice: String = MoneyType.allCasesDescription().first!
+    var userChoice: String = MoneyType.allCasesDesctiptionDefault().first!
+    var indexOfPicker = Int()
     
+    var sections: [PickerSection] = {
+        let sections = BudgetManager.allExpenseTypes()
+        let names = sections.map { $0.userExpenesType }
+        return names.map { group -> PickerSection in
+            let correspondingSections = sections.filter { $0.userExpenesType == group }
+            return PickerSection(name: group, array: correspondingSections)
+        }
+        
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -69,6 +79,12 @@ class PickerViewVC: BaseController {
             addChoiceButton.alpha = 0.7
         }
         
+    }
+    func getAllStrings() -> [String] {
+        var array = BudgetManager.allExpenseTypes()
+        var allStrings1 = array.map { $0.userExpenesType }
+        var allStrings = MoneyType.allCasesDesctiptionDefault() + allStrings1
+        return allStrings
     }
     
     private func configureView() {
@@ -122,10 +138,20 @@ extension PickerViewVC {
         textFieldExpenseType.text?.removeAll()
     }
     
+    
     @IBAction func deleteTypeAction(_ sender: Any) {
-       print(2)
+        var array = BudgetManager.allExpenseTypes()
+        if array.count > 4 && indexOfPicker > 4 {
+            BudgetManager.deleteExpenseType(object: array[indexOfPicker])
+        } else {
+            let indexOfPickerLess = indexOfPicker - 5
+            BudgetManager.deleteExpenseType(object: array[indexOfPickerLess])
+        }
+        moneyTypePicker.reloadAllComponents()
         
     }
+    
+    
     
     @IBAction func AddChoice(_ sender: Any) {
         guard let text = textFieldAmount.text, let doubleValue = Double(text) else { return }
@@ -142,18 +168,18 @@ extension PickerViewVC: UIPickerViewDelegate, UIPickerViewDataSource, UITextFiel
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        let allStrings = MoneyType.allCasesDesctiptionDefault() + pickerviewValues
-        return NSAttributedString(string: allStrings[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        indexOfPicker = row
+        return NSAttributedString(string: getAllStrings()[indexOfPicker], attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerviewValues.count + MoneyType.allCasesDesctiptionDefault().count
+        return getAllStrings().count
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let allStrings = pickerviewValues + MoneyType.allCasesDesctiptionDefault()
-        userChoice = allStrings[row]
+        //userChoice = getAllStrings()[row]
         
     }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let text = (textFieldAmount.text! as NSString).replacingCharacters(in: range, with: string)
         if !text.isEmpty {

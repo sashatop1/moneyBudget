@@ -18,7 +18,7 @@ class TableOfExpensesHeader: UITableViewHeaderFooterView {
     }()
     
     func setupHeader() {
-        self.textLabel?.textColor = UIColor.black
+    
     }
    
     override init(reuseIdentifier: String?) {

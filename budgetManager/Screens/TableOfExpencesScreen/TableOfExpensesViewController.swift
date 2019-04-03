@@ -99,31 +99,24 @@ extension TableOfExpensesViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: TableOfExpensesHeader.headerIdentifier) as! TableOfExpensesHeader
         header.setupHeader()
-        header.textLabel?.textColor = .black
         header.onTap = { [weak self] in
             guard let weakSelf = self else { return }
-            header.textLabel?.textColor = .black
             weakSelf.groupedSections[section].isExpanded.toggle()
             weakSelf.tableView.reloadSections(IndexSet(arrayLiteral: section), with: .fade)
         }
         return header
     
     }
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: TableOfExpensesHeader.headerIdentifier) as! TableOfExpensesHeader
+        header.textLabel?.textColor = .black
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
     }
     
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 44
-//    }
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 44
     }
-    
-//    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-//        return 44
-//    }
-
 }
