@@ -44,6 +44,7 @@ class TableOfExpensesViewController: UIViewController {
         super.viewDidLoad()
         self.tableView.backgroundColor = UIColor.init(red: 0.22, green: 0.28, blue: 0.31, alpha: 1)
         tableView.tableFooterView = UIView(frame: .zero)
+        self.navigationItem.backBarButtonItem?.tintColor = .white
     }
     
     

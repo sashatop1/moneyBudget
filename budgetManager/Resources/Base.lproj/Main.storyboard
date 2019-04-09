@@ -134,6 +134,21 @@
             </objects>
             <point key="canvasLocation" x="537" y="755"/>
         </scene>
+        <!--Color Language View Controller-->
+        <scene sceneID="92K-eh-pAC">
+            <objects>
+                <viewController id="IA0-TS-SJo" customClass="ColorLanguageViewController" customModule="budgetManager" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qan-aL-wDV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="szY-4D-scH"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dfj-zb-fdK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2140" y="-699"/>
+        </scene>
         <!--Adding changes-->
         <scene sceneID="iFe-Fv-bdt">
             <objects>
@@ -232,6 +247,7 @@
                         <outlet property="moneyTypePicker" destination="um5-XN-slU" id="t1K-PJ-o3d"/>
                         <outlet property="textFieldAmount" destination="fy1-aO-fys" id="GrP-1X-o7j"/>
                         <outlet property="textFieldExpenseType" destination="QNy-b0-kC6" id="Flf-0p-3Nr"/>
+                        <segue destination="IA0-TS-SJo" kind="show" identifier="goToColors" id="eGO-g1-xdC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Msi-7M-xda" userLabel="First Responder" sceneMemberID="firstResponder"/>

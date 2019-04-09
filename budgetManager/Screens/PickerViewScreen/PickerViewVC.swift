@@ -29,8 +29,8 @@ enum MoneyType: CaseIterable {
     
     static func allCasesDescription() -> [String] {
         //короче и прощe
-        return BudgetManager.allExpenseTypes().map { $0.userExpenesType }
-        //return MoneyType.allCases.map { $0.description }
+        //return BudgetManager.allExpenseTypes().map { $0.userExpenesType }
+        return MoneyType.allCases.map { $0.description }
     }
     static func allCasesDesctiptionDefault() -> [String] {
         return MoneyType.allCases.map { $0.description }
@@ -47,12 +47,13 @@ class PickerViewVC: BaseController {
     @IBOutlet weak var addChoiceButton: UIButton!
     @IBOutlet weak var createTypeButton: UIButton!
     @IBOutlet weak var deleteTypeButton: UIButton!
+    @IBOutlet weak var goToColorThemesButton: UIBarButtonItem!
     
    
     
     // MARK: - Properties
     var selectedAmount: Double = 0
-    var pickerviewValues = MoneyType.allCasesDescription()
+    var pickerviewValues: [String] = MoneyType.allCasesDescription() + BudgetManager.allExpenseTypes().map { $0.userExpenesType}
     var userChoice: String = MoneyType.allCasesDesctiptionDefault().first!
     var indexOfPicker = Int()
     
@@ -107,9 +108,13 @@ class PickerViewVC: BaseController {
         self.textFieldExpenseType.attributedPlaceholder = NSAttributedString(string: "Enter new type", attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(red: 1, green: 1, blue: 1, alpha: 0.4)])
         self.createTypeButton.backgroundColor = UIColor.clear //.clear
         navigationController?.navigationBar.barTintColor = UIColor.init(red: 0.06, green: 0.13, blue: 0.15, alpha: 1)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:  UIColor.init(red: 1, green: 1, blue: 1, alpha: 1)] // .white
-        if BudgetManager.DBHasEntries(ofType: UserExpenseType.self) == true { 
-        }
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:  UIColor.white] // .white
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(navigateToColors))
+        self.navigationItem.rightBarButtonItem?.tintColor = .white
+    }
+    
+    @objc func navigateToColors() {
+        self.performSegue(withIdentifier: "goToColors", sender: self)
     }
     
     func alert(title: String, message: String, style: UIAlertController.Style) {
@@ -140,14 +145,18 @@ extension PickerViewVC {
     
     
     @IBAction func deleteTypeAction(_ sender: Any) {
-        var array = BudgetManager.allExpenseTypes()
-        if array.count > 4 && indexOfPicker > 4 {
-            BudgetManager.deleteExpenseType(object: array[indexOfPicker])
-        } else {
-            let indexOfPickerLess = indexOfPicker - 5
-            BudgetManager.deleteExpenseType(object: array[indexOfPickerLess])
+        if indexOfPicker > 4 {
+            let array = BudgetManager.allExpenseTypes().map { $0.userExpenesType }
+//            let array2 = array.map { $0.userExpenesType }
+            let valueStr = pickerviewValues[indexOfPicker]
+//            let indexof = array2.firstIndex(of: valueStr)
+            let object = BudgetManager.allExpenseTypes().first { $0.userExpenesType == valueStr }
+            BudgetManager.deleteExpenseType(object: object!)
+            moneyTypePicker.reloadAllComponents() }
+        else {
+            self.alert(title: "Error", message: "You cannot delete default types of expense", style: .alert)
+            return
         }
-        moneyTypePicker.reloadAllComponents()
         
     }
     
@@ -176,7 +185,7 @@ extension PickerViewVC: UIPickerViewDelegate, UIPickerViewDataSource, UITextFiel
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        //userChoice = getAllStrings()[row]
+        indexOfPicker = row
         
     }
     

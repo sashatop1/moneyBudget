@@ -20,6 +20,7 @@
 		1FA687A4217A1B9B002D1361 /* TableOfExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA687A3217A1B9B002D1361 /* TableOfExpensesViewController.swift */; };
 		1FA687A6217A2AEE002D1361 /* TableOfExpensesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA687A5217A2AEE002D1361 /* TableOfExpensesCell.swift */; };
 		1FA687A8217A4AFD002D1361 /* BudgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA687A7217A4AFD002D1361 /* BudgetManager.swift */; };
+		1FC709FC2254F13A0019073D /* ColorLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC709FB2254F13A0019073D /* ColorLanguageViewController.swift */; };
 		1FDB00E121B1A46600CE0616 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDB00E021B1A46600CE0616 /* BaseController.swift */; };
 		1FFE883021A2B904007965A9 /* UserExpenseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE882F21A2B904007965A9 /* UserExpenseType.swift */; };
 		A178B7ADE4DC9BB1C191BC32 /* Pods_budgetManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C548BAC194CD38C2D6C42A5D /* Pods_budgetManager.framework */; };
@@ -42,6 +43,7 @@
 		1FA687A3217A1B9B002D1361 /* TableOfExpensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableOfExpensesViewController.swift; sourceTree = "<group>"; };
 		1FA687A5217A2AEE002D1361 /* TableOfExpensesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableOfExpensesCell.swift; sourceTree = "<group>"; };
 		1FA687A7217A4AFD002D1361 /* BudgetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetManager.swift; sourceTree = "<group>"; };
+		1FC709FB2254F13A0019073D /* ColorLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLanguageViewController.swift; sourceTree = "<group>"; };
 		1FDB00E021B1A46600CE0616 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		1FFE882F21A2B904007965A9 /* UserExpenseType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserExpenseType.swift; sourceTree = "<group>"; };
 		9CBA95B1096179407BC186D9 /* Pods-budgetManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budgetManager.release.xcconfig"; path = "Pods/Target Support Files/Pods-budgetManager/Pods-budgetManager.release.xcconfig"; sourceTree = "<group>"; };
@@ -104,6 +106,14 @@
 			path = budgetManager;
 			sourceTree = "<group>";
 		};
+		1FC709FA2254F1110019073D /* ColorAndLanguageScreen */ = {
+			isa = PBXGroup;
+			children = (
+				1FC709FB2254F13A0019073D /* ColorLanguageViewController.swift */,
+			);
+			path = ColorAndLanguageScreen;
+			sourceTree = "<group>";
+		};
 		1FDB00DE21B1A0ED00CE0616 /* LogInScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +159,7 @@
 		B3D2454A217E368F00400B61 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				1FC709FA2254F1110019073D /* ColorAndLanguageScreen */,
 				1FDB00DE21B1A0ED00CE0616 /* LogInScreen */,
 				B3D2454D217E36BA00400B61 /* TableOfExpencesScreen */,
 				B3D2454C217E36B000400B61 /* PickerViewScreen */,
@@ -315,6 +326,7 @@
 				1F9944BC222D78FF004062FE /* TableOfExpensesHeader.swift in Sources */,
 				1F0750AF22525C210005BCEB /* PickerSection.swift in Sources */,
 				1FA687A22179E098002D1361 /* Expense.swift in Sources */,
+				1FC709FC2254F13A0019073D /* ColorLanguageViewController.swift in Sources */,
 				1FA687A4217A1B9B002D1361 /* TableOfExpensesViewController.swift in Sources */,
 				1F982B3C21735CCF006B923A /* PickerViewVC.swift in Sources */,
 				1FA687A8217A4AFD002D1361 /* BudgetManager.swift in Sources */,
