@@ -145,10 +145,10 @@ extension PickerViewVC {
     
     
     @IBAction func deleteTypeAction(_ sender: Any) {
-        if indexOfPicker > 4 {
+        if moneyTypePicker.selectedRow(inComponent: 1) > 4 {
             let array = BudgetManager.allExpenseTypes().map { $0.userExpenesType }
 //            let array2 = array.map { $0.userExpenesType }
-            let valueStr = pickerviewValues[indexOfPicker]
+            let valueStr = pickerviewValues[moneyTypePicker.selectedRow(inComponent: 1)]
 //            let indexof = array2.firstIndex(of: valueStr)
             let object = BudgetManager.allExpenseTypes().first { $0.userExpenesType == valueStr }
             BudgetManager.deleteExpenseType(object: object!)
@@ -157,7 +157,6 @@ extension PickerViewVC {
             self.alert(title: "Error", message: "You cannot delete default types of expense", style: .alert)
             return
         }
-        
     }
     
     
@@ -178,10 +177,10 @@ extension PickerViewVC: UIPickerViewDelegate, UIPickerViewDataSource, UITextFiel
     }
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         indexOfPicker = row
-        return NSAttributedString(string: getAllStrings()[indexOfPicker], attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        return NSAttributedString(string: pickerviewValues[indexOfPicker], attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return getAllStrings().count
+        return pickerviewValues.count
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
