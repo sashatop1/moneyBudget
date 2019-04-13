@@ -1,0 +1,78 @@
+
+/* Class = "UIButton"; normalTitle = "Sign up"; ObjectID = "0XK-D0-0Cd"; */
+"0XK-D0-0Cd.normalTitle" = "Sign up";
+
+/* Class = "UINavigationItem"; title = "Adding changes"; ObjectID = "299-Gg-MyT"; */
+"299-Gg-MyT.title" = "Adding changes";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "37H-l1-PjQ"; */
+"37H-l1-PjQ.normalTitle" = "Add";
+
+/* Class = "UIButton"; normalTitle = "Show table"; ObjectID = "3CO-Ha-vN5"; */
+"3CO-Ha-vN5.normalTitle" = "Show table";
+
+/* Class = "UILabel"; text = "Light theme"; ObjectID = "EDs-Ej-pjz"; */
+"EDs-Ej-pjz.text" = "Light theme";
+
+/* Class = "UINavigationItem"; title = "Budget info"; ObjectID = "Gy7-LC-v9w"; */
+"Gy7-LC-v9w.title" = "Budget info";
+
+/* Class = "UIButton"; normalTitle = "Create expense type"; ObjectID = "Kpa-fk-hKv"; */
+"Kpa-fk-hKv.normalTitle" = "Create expense type";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "LKU-kH-0CN"; */
+"LKU-kH-0CN.placeholder" = "Password";
+
+/* Class = "UITextField"; placeholder = "Account"; ObjectID = "P1c-o9-xEB"; */
+"P1c-o9-xEB.placeholder" = "Account";
+
+/* Class = "UITextField"; placeholder = "Enter new type"; ObjectID = "QNy-b0-kC6"; */
+"QNy-b0-kC6.placeholder" = "Введите новый тип";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "UhV-OZ-Wju"; */
+"UhV-OZ-Wju.placeholder" = "Password";
+
+/* Class = "UIButton"; normalTitle = "Log In"; ObjectID = "aze-Ee-wCh"; */
+"aze-Ee-wCh.normalTitle" = "Log In";
+
+/* Class = "UILabel"; text = "English"; ObjectID = "bhs-iG-ucK"; */
+"bhs-iG-ucK.text" = "English";
+
+/* Class = "UILabel"; text = "Color theme changer"; ObjectID = "dN3-XG-wvx"; */
+"dN3-XG-wvx.text" = "Color theme changer";
+
+/* Class = "UINavigationItem"; title = "Signing up"; ObjectID = "fDA-FQ-75X"; */
+"fDA-FQ-75X.title" = "Signing up";
+
+/* Class = "UITextField"; placeholder = "Enter amount"; ObjectID = "fy1-aO-fys"; */
+"fy1-aO-fys.placeholder" = "Enter amount";
+
+/* Class = "UINavigationItem"; title = "Log In"; ObjectID = "gHe-sd-yj2"; */
+"gHe-sd-yj2.title" = "Log In";
+
+/* Class = "UILabel"; text = "Русский"; ObjectID = "k5t-DN-8P7"; */
+"k5t-DN-8P7.text" = "Русский";
+
+/* Class = "UIButton"; normalTitle = "Sing up"; ObjectID = "mJ4-Ko-87e"; */
+"mJ4-Ko-87e.normalTitle" = "Sing up";
+
+/* Class = "UIButton"; normalTitle = "Delete expense type"; ObjectID = "nlF-kr-yvb"; */
+"nlF-kr-yvb.normalTitle" = "Delete expense type";
+
+/* Class = "UILabel"; text = "Dark theme"; ObjectID = "oxe-dK-ge1"; */
+"oxe-dK-ge1.text" = "Dark theme";
+
+/* Class = "UITextField"; placeholder = "Account"; ObjectID = "sSf-kU-kaW"; */
+"sSf-kU-kaW.placeholder" = "Account";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "uCD-Tm-aDs"; */
+"uCD-Tm-aDs.text" = "Label";
+
+/* Class = "UILabel"; text = "Fun theme"; ObjectID = "uW6-af-DtX"; */
+"uW6-af-DtX.text" = "Fun theme";
+
+/* Class = "UILabel"; text = "Language changer"; ObjectID = "ubk-HY-4Nh"; */
+"ubk-HY-4Nh.text" = "Language changer";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "uja-4m-Ku2"; */
+"uja-4m-Ku2.text" = "Label";

@@ -20,6 +20,11 @@
 		1FA687A4217A1B9B002D1361 /* TableOfExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA687A3217A1B9B002D1361 /* TableOfExpensesViewController.swift */; };
 		1FA687A6217A2AEE002D1361 /* TableOfExpensesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA687A5217A2AEE002D1361 /* TableOfExpensesCell.swift */; };
 		1FA687A8217A4AFD002D1361 /* BudgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA687A7217A4AFD002D1361 /* BudgetManager.swift */; };
+		1FB846CF225F3DB40057C610 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB846CE225F3DB40057C610 /* Theme.swift */; };
+		1FB846D2225F3DFC0057C610 /* ThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB846D1225F3DFC0057C610 /* ThemeProtocol.swift */; };
+		1FB846D4225F3F3B0057C610 /* LightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB846D3225F3F3B0057C610 /* LightTheme.swift */; };
+		1FB846D6225F3F440057C610 /* DarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB846D5225F3F440057C610 /* DarkTheme.swift */; };
+		1FB846D9225F48670057C610 /* FunTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB846D8225F48670057C610 /* FunTheme.swift */; };
 		1FC709FC2254F13A0019073D /* ColorLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC709FB2254F13A0019073D /* ColorLanguageViewController.swift */; };
 		1FDB00E121B1A46600CE0616 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDB00E021B1A46600CE0616 /* BaseController.swift */; };
 		1FFE883021A2B904007965A9 /* UserExpenseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE882F21A2B904007965A9 /* UserExpenseType.swift */; };
@@ -43,6 +48,12 @@
 		1FA687A3217A1B9B002D1361 /* TableOfExpensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableOfExpensesViewController.swift; sourceTree = "<group>"; };
 		1FA687A5217A2AEE002D1361 /* TableOfExpensesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableOfExpensesCell.swift; sourceTree = "<group>"; };
 		1FA687A7217A4AFD002D1361 /* BudgetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetManager.swift; sourceTree = "<group>"; };
+		1FB846CE225F3DB40057C610 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		1FB846D1225F3DFC0057C610 /* ThemeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeProtocol.swift; sourceTree = "<group>"; };
+		1FB846D3225F3F3B0057C610 /* LightTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightTheme.swift; sourceTree = "<group>"; };
+		1FB846D5225F3F440057C610 /* DarkTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkTheme.swift; sourceTree = "<group>"; };
+		1FB846D8225F48670057C610 /* FunTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunTheme.swift; sourceTree = "<group>"; };
+		1FBEAB44225CF89700EBA1A0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		1FC709FB2254F13A0019073D /* ColorLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLanguageViewController.swift; sourceTree = "<group>"; };
 		1FDB00E021B1A46600CE0616 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		1FFE882F21A2B904007965A9 /* UserExpenseType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserExpenseType.swift; sourceTree = "<group>"; };
@@ -106,6 +117,18 @@
 			path = budgetManager;
 			sourceTree = "<group>";
 		};
+		1FB846D0225F3DED0057C610 /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				1FB846CE225F3DB40057C610 /* Theme.swift */,
+				1FB846D1225F3DFC0057C610 /* ThemeProtocol.swift */,
+				1FB846D3225F3F3B0057C610 /* LightTheme.swift */,
+				1FB846D5225F3F440057C610 /* DarkTheme.swift */,
+				1FB846D8225F48670057C610 /* FunTheme.swift */,
+			);
+			path = Themes;
+			sourceTree = "<group>";
+		};
 		1FC709FA2254F1110019073D /* ColorAndLanguageScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +155,7 @@
 		B3D24547217E363800400B61 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1FB846D0225F3DED0057C610 /* Themes */,
 				1F982B4221735CD3006B923A /* LaunchScreen.storyboard */,
 				1F982B3D21735CCF006B923A /* Main.storyboard */,
 				1F982B4021735CD3006B923A /* Assets.xcassets */,
@@ -319,11 +343,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FB846D2225F3DFC0057C610 /* ThemeProtocol.swift in Sources */,
 				1FA687A6217A2AEE002D1361 /* TableOfExpensesCell.swift in Sources */,
 				1FDB00E121B1A46600CE0616 /* BaseController.swift in Sources */,
+				1FB846D9225F48670057C610 /* FunTheme.swift in Sources */,
+				1FB846D6225F3F440057C610 /* DarkTheme.swift in Sources */,
 				1FFE883021A2B904007965A9 /* UserExpenseType.swift in Sources */,
 				1F544F38224780A8007CEF05 /* TableOfExpensesSection.swift in Sources */,
 				1F9944BC222D78FF004062FE /* TableOfExpensesHeader.swift in Sources */,
+				1FB846D4225F3F3B0057C610 /* LightTheme.swift in Sources */,
 				1F0750AF22525C210005BCEB /* PickerSection.swift in Sources */,
 				1FA687A22179E098002D1361 /* Expense.swift in Sources */,
 				1FC709FC2254F13A0019073D /* ColorLanguageViewController.swift in Sources */,
@@ -332,6 +360,7 @@
 				1FA687A8217A4AFD002D1361 /* BudgetManager.swift in Sources */,
 				1F982B3A21735CCF006B923A /* AppDelegate.swift in Sources */,
 				B31D743D218A1FA9008B7819 /* Extensions.swift in Sources */,
+				1FB846CF225F3DB40057C610 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +371,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				1F982B3E21735CCF006B923A /* Base */,
+				1FBEAB44225CF89700EBA1A0 /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -361,6 +391,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -422,6 +453,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

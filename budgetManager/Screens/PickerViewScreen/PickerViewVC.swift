@@ -53,7 +53,7 @@ class PickerViewVC: BaseController {
     
     // MARK: - Properties
     var selectedAmount: Double = 0
-    var pickerviewValues: [String] = MoneyType.allCasesDescription() + BudgetManager.allExpenseTypes().map { $0.userExpenesType}
+    var pickerviewValues: [String] { return MoneyType.allCasesDescription() + BudgetManager.allExpenseTypes().map { $0.userExpenesType} }
     var userChoice: String = MoneyType.allCasesDesctiptionDefault().first!
     var indexOfPicker = Int()
     
@@ -98,7 +98,8 @@ class PickerViewVC: BaseController {
          так можно легко где-нибудь лажануть
          */
         //.init обычно е используется, лучше юзать конструктор UIColor(red:green:blue:alpha)
-        self.view.backgroundColor = UIColor.init(red: 0.22, green: 0.28, blue: 0.31, alpha: 1)
+//        self.view.backgroundColor = UIColor.init(red: 0.22, green: 0.28, blue: 0.31, alpha: 1)
+        self.view.backgroundColor = Theme.current.backgroundColor
         self.textFieldAmount.backgroundColor = UIColor.init(red: 0.38, green: 0.45, blue: 0.48, alpha: 1)
         self.textFieldExpenseType.backgroundColor = UIColor.init(red: 0.38, green: 0.45, blue: 0.48, alpha: 1)
         self.textFieldAmount.textColor = UIColor.white // можно заменить на просто .white
@@ -138,17 +139,17 @@ extension PickerViewVC {
             return }
         let newExpenseType = UserExpenseType(userExpenseType: expenseTypeName)
         BudgetManager.addExpenseType(object: newExpenseType)
-        pickerviewValues.append(expenseTypeName)
+        //pickerviewValues.append(expenseTypeName)
         moneyTypePicker.reloadAllComponents()
         textFieldExpenseType.text?.removeAll()
     }
     
     
     @IBAction func deleteTypeAction(_ sender: Any) {
-        if moneyTypePicker.selectedRow(inComponent: 1) > 4 {
+        if moneyTypePicker.selectedRow(inComponent: 0) > 4 {
             let array = BudgetManager.allExpenseTypes().map { $0.userExpenesType }
 //            let array2 = array.map { $0.userExpenesType }
-            let valueStr = pickerviewValues[moneyTypePicker.selectedRow(inComponent: 1)]
+            let valueStr = pickerviewValues[moneyTypePicker.selectedRow(inComponent: 0)]
 //            let indexof = array2.firstIndex(of: valueStr)
             let object = BudgetManager.allExpenseTypes().first { $0.userExpenesType == valueStr }
             BudgetManager.deleteExpenseType(object: object!)
