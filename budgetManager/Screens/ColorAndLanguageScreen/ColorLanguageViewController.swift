@@ -1,52 +1,46 @@
-//
-//  ColorLanguageViewController.swift
-//  budgetManager
-//
-//  Created by Александ on 03/04/2019.
-//  Copyright © 2019 Александ. All rights reserved.
-//
-
 import UIKit
 
 class ColorLanguageViewController: UIViewController {
     
+    private static let shared = ColorLanguageViewController()
+    
     @IBOutlet weak var colorThemeLabels: UILabel!
-    
     @IBOutlet weak var darkThemeOutlet: UISwitch!
-    
     @IBOutlet weak var lightThemeOutlet: UISwitch!
-    
     @IBOutlet weak var funThemeOutlet: UISwitch!
-    
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var darkLabel: UILabel!
     @IBOutlet weak var lightLabel: UILabel!
     @IBOutlet weak var funLabel: UILabel!
     
-    let tableVC = TableOfExpensesViewController()
-    
     
     override func viewDidLoad() {
-        self.view.backgroundColor = UIColor.init(red: 0.22, green: 0.28, blue: 0.31, alpha: 1)
-        navigationController?.navigationBar.tintColor = .white
         
-        
-        
-        darkThemeOutlet.isOn = true
-        lightThemeOutlet.isOn = false
-        funThemeOutlet.isOn = false
+        if UserDefaults.standard.bool(forKey: "black") {
+            darkThemeOutlet.isOn = true
+            lightThemeOutlet.isOn = false
+            funThemeOutlet.isOn = false
+        } else if UserDefaults.standard.bool(forKey: "white") {
+            darkThemeOutlet.isOn = false
+            lightThemeOutlet.isOn = true
+            funThemeOutlet.isOn = false
+        } else if UserDefaults.standard.bool(forKey: "fun") {
+            darkThemeOutlet.isOn = false
+            lightThemeOutlet.isOn = false
+            funThemeOutlet.isOn = true
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        applyTheme()
     }
     
     func alert(title: String, message: String, style: UIAlertController.Style) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
-        let action = UIAlertAction(title: "Okay", style: .default) { (action) in
-            
-        }
+        let action = UIAlertAction(title: "Okay", style: .default) { (action) in }
         alertController.addAction(action)
         self.present(alertController, animated: true, completion: nil)
     }
-    
-    
     
     @IBAction func darkThemeSwitcher(_ sender: Any) {
         if darkThemeOutlet.isOn == false {
@@ -56,15 +50,14 @@ class ColorLanguageViewController: UIViewController {
         }
         else { lightThemeOutlet.isOn = false
             funThemeOutlet.isOn = false
-            Theme.current = DarkTheme()
-        
+            ThemeManager.shared.current = DarkTheme()
+            UserDefaults.standard.set(true, forKey: "black")
+            UserDefaults.standard.set(false, forKey: "white")
+            UserDefaults.standard.set(false, forKey: "fun")
             applyTheme()
-    
-            
         }
-    
-        
     }
+    
     @IBAction func lightThemeSwitcher(_ sender: Any) {
         if lightThemeOutlet.isOn == false {
             self.alert(title: "Error", message: "Light theme is already on!", style: .alert)
@@ -73,10 +66,14 @@ class ColorLanguageViewController: UIViewController {
         }
         else { darkThemeOutlet.isOn = false
             funThemeOutlet.isOn = false
-            Theme.current = LightTheme()
+            ThemeManager.shared.current = LightTheme()
+            UserDefaults.standard.set(true, forKey: "white")
+            UserDefaults.standard.set(false, forKey: "black")
+            UserDefaults.standard.set(false, forKey: "fun")
             applyTheme()
         }
     }
+    
     @IBAction func funThemeSwitcher(_ sender: Any) {
         if funThemeOutlet.isOn == false {
             self.alert(title: "Error", message: "Dark theme is already on!", style: .alert)
@@ -85,21 +82,28 @@ class ColorLanguageViewController: UIViewController {
         }
         else { lightThemeOutlet.isOn = false
             darkThemeOutlet.isOn = false
-            Theme.current = FunTheme()
+            ThemeManager.shared.current = FunTheme()
+            UserDefaults.standard.set(true, forKey: "fun")
+            UserDefaults.standard.set(false, forKey: "black")
+            UserDefaults.standard.set(false, forKey: "white")
             applyTheme()
         }
     }
     
-    func applyTheme() {
-        self.view.backgroundColor = Theme.current.backgroundColor
-        mainLabel.textColor = Theme.current.labelColor
-        darkLabel.textColor = Theme.current.labelColor
-        lightLabel.textColor = Theme.current.labelColor
-        funLabel.textColor = Theme.current.labelColor
-        navigationController?.navigationBar.barTintColor = Theme.current.backgroundColor
-        navigationController?.navigationBar.tintColor = Theme.current.labelColor
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Theme.current.labelColor]
-        tableVC.self.view.backgroundColor = Theme.current.backgroundColor
+    @objc func applyTheme() {
+        view.backgroundColor = ThemeManager.shared.current.backgroundColor
+        mainLabel.textColor = ThemeManager.shared.current.labelColor
+        darkLabel.textColor = ThemeManager.shared.current.labelColor
+        lightLabel.textColor = ThemeManager.shared.current.labelColor
+        funLabel.textColor = ThemeManager.shared.current.labelColor
+        navigationController?.navigationBar.barTintColor = ThemeManager.shared.current.backgroundColor
+        navigationController?.navigationBar.tintColor = ThemeManager.shared.current.labelColor
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: ThemeManager.shared.current.labelColor]
+        navigationItem.rightBarButtonItem?.tintColor = ThemeManager.shared.current.labelColor
     }
     
+}
+
+extension Notification.Name {
+    static let colorChanger = Notification.Name("ColorChange")
 }

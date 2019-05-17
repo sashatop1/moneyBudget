@@ -1,11 +1,3 @@
-//
-//  TableOfExpensesHeader.swift
-//  budgetManager
-//
-//  Created by Александ on 04/03/2019.
-//  Copyright © 2019 Александ. All rights reserved.
-//
-
 import UIKit
 
 class TableOfExpensesHeader: UITableViewHeaderFooterView {
@@ -18,9 +10,9 @@ class TableOfExpensesHeader: UITableViewHeaderFooterView {
     }()
     
     func setupHeader() {
-    
+        self.backgroundColor = ThemeManager.shared.current.textFieldsBackgrounds
     }
-   
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         addGestureRecognizer(tap)

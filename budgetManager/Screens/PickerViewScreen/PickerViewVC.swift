@@ -1,14 +1,5 @@
-//
-//  ViewController.swift
-//  budgetManager
-//
-//  Created by Александ on 14.10.2018.
-//  Copyright © 2018 Александ. All rights reserved.
-//
-
 import UIKit
 
-//вынес жирный энум в шапку файла, потому что с ним скорее всего будут работать несколько классов и обращаться через PickerViewVC.MoneyType каждый раз будет неудобно
 enum MoneyType: CaseIterable {
     case Earned
     case Car
@@ -27,12 +18,7 @@ enum MoneyType: CaseIterable {
         }
     }
     
-    static func allCasesDescription() -> [String] {
-        //короче и прощe
-        //return BudgetManager.allExpenseTypes().map { $0.userExpenesType }
-        return MoneyType.allCases.map { $0.description }
-    }
-    static func allCasesDesctiptionDefault() -> [String] {
+    static func allCasesDescriptionDefault() -> [String] {
         return MoneyType.allCases.map { $0.description }
     }
     
@@ -47,14 +33,15 @@ class PickerViewVC: BaseController {
     @IBOutlet weak var addChoiceButton: UIButton!
     @IBOutlet weak var createTypeButton: UIButton!
     @IBOutlet weak var deleteTypeButton: UIButton!
-    @IBOutlet weak var goToColorThemesButton: UIBarButtonItem!
     
-   
+    @IBOutlet weak var tableButton: UIButton!
+    
+    
     
     // MARK: - Properties
     var selectedAmount: Double = 0
-    var pickerviewValues: [String] { return MoneyType.allCasesDescription() + BudgetManager.allExpenseTypes().map { $0.userExpenesType} }
-    var userChoice: String = MoneyType.allCasesDesctiptionDefault().first!
+    var pickerviewValues: [String] { return MoneyType.allCasesDescriptionDefault() + BudgetManager.allExpenseTypes().map { $0.userExpenesType} }
+    var userChoice: String = MoneyType.allCasesDescriptionDefault().first!
     var indexOfPicker = Int()
     
     var sections: [PickerSection] = {
@@ -66,50 +53,66 @@ class PickerViewVC: BaseController {
         }
         
     }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
         
-        //связку делегатов можно вынести в отдельный метод, ты ведь для пикера делегаты связываешь в configureView()
-        textFieldAmount.delegate = self
-        //1) незачем делать эту проверку, экран с пустым текстфилдом появляется, значит всегда будет trueи всегда выполнится блок
-        //2) "text!" не стал бы делать
-        //3) == true можно убрать, сравнение излишне потому что isEmpty уже Bool
-        if textFieldAmount.text!.isEmpty == true {
-            addChoiceButton.isUserInteractionEnabled = false
-            addChoiceButton.alpha = 0.7
-        }
         
+    
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        applyTheme()
+        
+        print(ThemeManager.shared.current)
     }
     func getAllStrings() -> [String] {
-        var array = BudgetManager.allExpenseTypes()
-        var allStrings1 = array.map { $0.userExpenesType }
-        var allStrings = MoneyType.allCasesDesctiptionDefault() + allStrings1
+        let array = BudgetManager.allExpenseTypes()
+        let allStrings1 = array.map { $0.userExpenesType }
+        let allStrings = MoneyType.allCasesDescriptionDefault() + allStrings1
         return allStrings
     }
     
+    
+    @objc func applyTheme() {
+        self.view.backgroundColor = ThemeManager.shared.current.backgroundColor
+        
+        self.tableButton.setTitleColor(ThemeManager.shared.current.labelColor, for: .normal)
+        self.addChoiceButton.setTitleColor(ThemeManager.shared.current.labelColor, for: .normal)
+        self.createTypeButton.setTitleColor(ThemeManager.shared.current.labelColor, for: .normal)
+        self.deleteTypeButton.setTitleColor(ThemeManager.shared.current.labelColor, for: .normal)
+        tableButton.titleLabel?.textColor = ThemeManager.shared.current.labelColor
+        addChoiceButton.titleLabel?.textColor = ThemeManager.shared.current.labelColor
+        deleteTypeButton.titleLabel?.textColor = ThemeManager.shared.current.labelColor
+        createTypeButton.titleLabel?.textColor = ThemeManager.shared.current.labelColor
+        textFieldExpenseType.backgroundColor = ThemeManager.shared.current.textFieldsBackgrounds
+        textFieldExpenseType.attributedPlaceholder = NSAttributedString(string: "Enter expense type", attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.shared.current.textFieldsPlaceholder])
+        textFieldExpenseType.textColor = ThemeManager.shared.current.labelColor
+        textFieldAmount.backgroundColor = ThemeManager.shared.current.textFieldsBackgrounds
+        textFieldAmount.attributedPlaceholder = NSAttributedString(string: "Enter amount", attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.shared.current.textFieldsPlaceholder])
+        textFieldAmount.textColor = ThemeManager.shared.current.labelColor
+        navigationController?.navigationBar.barTintColor = ThemeManager.shared.current.backgroundColor
+        navigationController?.navigationBar.tintColor = ThemeManager.shared.current.labelColor
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: ThemeManager.shared.current.labelColor]
+        navigationItem.rightBarButtonItem?.tintColor = ThemeManager.shared.current.labelColor
+        
+        
+    }
     private func configureView() {
         moneyTypePicker.dataSource = self
         moneyTypePicker.delegate = self
+        textFieldAmount.delegate = self
         
-        /* хорошо, что попробовал кодом настраивать экран, но обычно для разгрузки класса как можно больше
-         настройки делается в сториборде.
-         + совет: вынеси основные цвета в отдельный файл с константами чтобы каждый раз не указывать значения RGBA,
-         так можно легко где-нибудь лажануть
-         */
-        //.init обычно е используется, лучше юзать конструктор UIColor(red:green:blue:alpha)
-//        self.view.backgroundColor = UIColor.init(red: 0.22, green: 0.28, blue: 0.31, alpha: 1)
-        self.view.backgroundColor = Theme.current.backgroundColor
-        self.textFieldAmount.backgroundColor = UIColor.init(red: 0.38, green: 0.45, blue: 0.48, alpha: 1)
-        self.textFieldExpenseType.backgroundColor = UIColor.init(red: 0.38, green: 0.45, blue: 0.48, alpha: 1)
-        self.textFieldAmount.textColor = UIColor.white // можно заменить на просто .white
-        self.textFieldExpenseType.textColor = UIColor.white
-        // тут можно использовать UIColor(white: alpha:)
-        self.textFieldAmount.attributedPlaceholder = NSAttributedString(string: "Enter amount", attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(red: 1, green: 1, blue: 1, alpha: 0.4)])
-        self.textFieldExpenseType.attributedPlaceholder = NSAttributedString(string: "Enter new type", attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(red: 1, green: 1, blue: 1, alpha: 0.4)])
-        self.createTypeButton.backgroundColor = UIColor.clear //.clear
-        navigationController?.navigationBar.barTintColor = UIColor.init(red: 0.06, green: 0.13, blue: 0.15, alpha: 1)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:  UIColor.white] // .white
+        applyTheme()
+        
+        if textFieldAmount.text!.isEmpty {
+            addChoiceButton.isUserInteractionEnabled = false
+            addChoiceButton.alpha = 0.5
+        }
+        
+        
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:  UIColor.white]
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(navigateToColors))
         self.navigationItem.rightBarButtonItem?.tintColor = .white
     }
@@ -139,7 +142,6 @@ extension PickerViewVC {
             return }
         let newExpenseType = UserExpenseType(userExpenseType: expenseTypeName)
         BudgetManager.addExpenseType(object: newExpenseType)
-        //pickerviewValues.append(expenseTypeName)
         moneyTypePicker.reloadAllComponents()
         textFieldExpenseType.text?.removeAll()
     }
@@ -147,10 +149,7 @@ extension PickerViewVC {
     
     @IBAction func deleteTypeAction(_ sender: Any) {
         if moneyTypePicker.selectedRow(inComponent: 0) > 4 {
-            let array = BudgetManager.allExpenseTypes().map { $0.userExpenesType }
-//            let array2 = array.map { $0.userExpenesType }
             let valueStr = pickerviewValues[moneyTypePicker.selectedRow(inComponent: 0)]
-//            let indexof = array2.firstIndex(of: valueStr)
             let object = BudgetManager.allExpenseTypes().first { $0.userExpenesType == valueStr }
             BudgetManager.deleteExpenseType(object: object!)
             moneyTypePicker.reloadAllComponents() }
@@ -164,7 +163,8 @@ extension PickerViewVC {
     
     @IBAction func AddChoice(_ sender: Any) {
         guard let text = textFieldAmount.text, let doubleValue = Double(text) else { return }
-        let userExpense = Expense(amountOfUserPick: doubleValue, userPick: userChoice)
+        let valueStr = pickerviewValues[moneyTypePicker.selectedRow(inComponent: 0)]
+        let userExpense = Expense(amountOfUserPick: doubleValue, userPick: valueStr)
         BudgetManager.addObject(object: userExpense)
         textFieldAmount.text?.removeAll()
     }
@@ -178,7 +178,23 @@ extension PickerViewVC: UIPickerViewDelegate, UIPickerViewDataSource, UITextFiel
     }
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         indexOfPicker = row
-        return NSAttributedString(string: pickerviewValues[indexOfPicker], attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        
+        if UserDefaults.standard.bool(forKey: "black") {
+            let myTitle = NSAttributedString(string: pickerviewValues[indexOfPicker], attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.shared.current.labelColor])
+            
+            return myTitle
+        } else if UserDefaults.standard.bool(forKey: "white") {
+            let myTitle = NSAttributedString(string: pickerviewValues[indexOfPicker], attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.shared.current.labelColor])
+            
+            return myTitle
+        } else if UserDefaults.standard.bool(forKey: "fun") {
+            let myTitle = NSAttributedString(string: pickerviewValues[indexOfPicker], attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.shared.current.labelColor])
+            return myTitle
+        } else {
+            let myTitle = NSAttributedString(string: pickerviewValues[indexOfPicker], attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+            return myTitle
+        }
+        
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pickerviewValues.count
@@ -186,21 +202,25 @@ extension PickerViewVC: UIPickerViewDelegate, UIPickerViewDataSource, UITextFiel
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         indexOfPicker = row
-        
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let text = (textFieldAmount.text! as NSString).replacingCharacters(in: range, with: string)
-        if !text.isEmpty {
+        let aSet = NSCharacterSet(charactersIn:"0123456789.").inverted
+        let compSepByCharInSet = string.components(separatedBy: aSet)
+        let numberFiltered = compSepByCharInSet.joined(separator: "")
+        
+        let textExpense = (textFieldAmount.text! as NSString).replacingCharacters(in: range, with: string)
+        if !textExpense.isEmpty {
             addChoiceButton.isUserInteractionEnabled = true
             addChoiceButton.alpha = 1
         } else {
             addChoiceButton.isUserInteractionEnabled = false
-            addChoiceButton.alpha = 0
+            addChoiceButton.alpha = 0.5
             
         }
-        return true
-        }
+        return string == numberFiltered
+       
+    }
 }
 
 

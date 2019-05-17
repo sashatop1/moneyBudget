@@ -1,26 +1,9 @@
-//
-//  TableView.swift
-//  budgetManager
-//
-//  Created by Александ on 19/10/2018.
-//  Copyright © 2018 Александ. All rights reserved.
-//
-
 import UIKit
 
-/*
- класс не стоит называть "TableView" так как TableView это уже название нативного UI эелемента
- нужно более понятное и емкое название
- */
 class TableOfExpensesViewController: UIViewController {
     
-    /*
-     "// MARK: -" используется для логического разделения сегментов кода друг от друга
-     в самом коде и сверху в навигаторе (нажми на  С TableOfExpencesViewController сверху)
-     */
-    
     // MARK: - Properties
-        var groupedSections: [TableOfExpensesSection] = {
+    var groupedSections: [TableOfExpensesSection] = {
         let sections = BudgetManager.allObjects()
         let names = sections.map { $0.expenseType }.unique
         return names.map { group -> TableOfExpensesSection in
@@ -28,7 +11,7 @@ class TableOfExpensesViewController: UIViewController {
             return TableOfExpensesSection(name: group, array: correspondingSections)
         }
     }()
-    //=(перед блоком) и  () в конце условия означают, что этот блок выполняется
+    
     
     
     
@@ -42,21 +25,23 @@ class TableOfExpensesViewController: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.backgroundColor = UIColor.init(red: 0.22, green: 0.28, blue: 0.31, alpha: 1)
+        
         tableView.tableFooterView = UIView(frame: .zero)
-        self.navigationItem.backBarButtonItem?.tintColor = .white
+        
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    
+        self.tableView.backgroundColor = ThemeManager.shared.current.backgroundColor
+        self.navigationItem.backBarButtonItem?.tintColor = ThemeManager.shared.current.labelColor
+        
     }
     
     
     
     //MARK: - Support methods
-   func formTitleForSection(section: String) -> String {
+    func formTitleForSection(section: String) -> String {
         return "\(section): Total sum = \(BudgetManager.getTotalExpenses(forExpenseType: section))"
     }
     
@@ -99,6 +84,7 @@ extension TableOfExpensesViewController: UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: TableOfExpensesHeader.headerIdentifier) as! TableOfExpensesHeader
+        
         header.setupHeader()
         header.onTap = { [weak self] in
             guard let weakSelf = self else { return }
@@ -106,7 +92,7 @@ extension TableOfExpensesViewController: UITableViewDelegate, UITableViewDataSou
             weakSelf.tableView.reloadSections(IndexSet(arrayLiteral: section), with: .fade)
         }
         return header
-    
+        
     }
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: TableOfExpensesHeader.headerIdentifier) as! TableOfExpensesHeader

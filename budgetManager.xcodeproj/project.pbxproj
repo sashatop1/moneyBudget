@@ -9,7 +9,11 @@
 /* Begin PBXBuildFile section */
 		1F062A7F21760C870022A3CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F062A7E21760C870022A3CD /* GoogleService-Info.plist */; };
 		1F0750AF22525C210005BCEB /* PickerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0750AE22525C210005BCEB /* PickerSection.swift */; };
+		1F2C624C227F2119005862DF /* EchangeRatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C624B227F2119005862DF /* EchangeRatesModel.swift */; };
+		1F2C624F227F3DCE005862DF /* ExchangeRatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C624E227F3DCE005862DF /* ExchangeRatesViewController.swift */; };
 		1F544F38224780A8007CEF05 /* TableOfExpensesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F544F37224780A8007CEF05 /* TableOfExpensesSection.swift */; };
+		1F5475A4227863A10086364C /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5475A3227863A10086364C /* ColorManager.swift */; };
+		1F7EDFD62261BA4D00A06849 /* gitignore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7EDFD52261BA4D00A06849 /* gitignore.swift */; };
 		1F982B3A21735CCF006B923A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F982B3921735CCF006B923A /* AppDelegate.swift */; };
 		1F982B3C21735CCF006B923A /* PickerViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F982B3B21735CCF006B923A /* PickerViewVC.swift */; };
 		1F982B3F21735CCF006B923A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F982B3D21735CCF006B923A /* Main.storyboard */; };
@@ -20,7 +24,7 @@
 		1FA687A4217A1B9B002D1361 /* TableOfExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA687A3217A1B9B002D1361 /* TableOfExpensesViewController.swift */; };
 		1FA687A6217A2AEE002D1361 /* TableOfExpensesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA687A5217A2AEE002D1361 /* TableOfExpensesCell.swift */; };
 		1FA687A8217A4AFD002D1361 /* BudgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA687A7217A4AFD002D1361 /* BudgetManager.swift */; };
-		1FB846CF225F3DB40057C610 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB846CE225F3DB40057C610 /* Theme.swift */; };
+		1FB846CF225F3DB40057C610 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB846CE225F3DB40057C610 /* ThemeManager.swift */; };
 		1FB846D2225F3DFC0057C610 /* ThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB846D1225F3DFC0057C610 /* ThemeProtocol.swift */; };
 		1FB846D4225F3F3B0057C610 /* LightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB846D3225F3F3B0057C610 /* LightTheme.swift */; };
 		1FB846D6225F3F440057C610 /* DarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB846D5225F3F440057C610 /* DarkTheme.swift */; };
@@ -35,7 +39,11 @@
 /* Begin PBXFileReference section */
 		1F062A7E21760C870022A3CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1F0750AE22525C210005BCEB /* PickerSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerSection.swift; sourceTree = "<group>"; };
+		1F2C624B227F2119005862DF /* EchangeRatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EchangeRatesModel.swift; sourceTree = "<group>"; };
+		1F2C624E227F3DCE005862DF /* ExchangeRatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesViewController.swift; sourceTree = "<group>"; };
 		1F544F37224780A8007CEF05 /* TableOfExpensesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableOfExpensesSection.swift; sourceTree = "<group>"; };
+		1F5475A3227863A10086364C /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
+		1F7EDFD52261BA4D00A06849 /* gitignore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gitignore.swift; sourceTree = "<group>"; };
 		1F982B3621735CCF006B923A /* budgetManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = budgetManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F982B3921735CCF006B923A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1F982B3B21735CCF006B923A /* PickerViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewVC.swift; sourceTree = "<group>"; };
@@ -48,7 +56,7 @@
 		1FA687A3217A1B9B002D1361 /* TableOfExpensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableOfExpensesViewController.swift; sourceTree = "<group>"; };
 		1FA687A5217A2AEE002D1361 /* TableOfExpensesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableOfExpensesCell.swift; sourceTree = "<group>"; };
 		1FA687A7217A4AFD002D1361 /* BudgetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetManager.swift; sourceTree = "<group>"; };
-		1FB846CE225F3DB40057C610 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		1FB846CE225F3DB40057C610 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		1FB846D1225F3DFC0057C610 /* ThemeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeProtocol.swift; sourceTree = "<group>"; };
 		1FB846D3225F3F3B0057C610 /* LightTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightTheme.swift; sourceTree = "<group>"; };
 		1FB846D5225F3F440057C610 /* DarkTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkTheme.swift; sourceTree = "<group>"; };
@@ -83,6 +91,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1F2C624D227F3DB7005862DF /* ExchangeRates */ = {
+			isa = PBXGroup;
+			children = (
+				1F2C624E227F3DCE005862DF /* ExchangeRatesViewController.swift */,
+			);
+			path = ExchangeRates;
+			sourceTree = "<group>";
+		};
 		1F982B2D21735CCF006B923A = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +129,7 @@
 				B31D743C218A1FA9008B7819 /* Extensions.swift */,
 				1F982B4521735CD3006B923A /* Info.plist */,
 				1F062A7E21760C870022A3CD /* GoogleService-Info.plist */,
+				1F7EDFD52261BA4D00A06849 /* gitignore.swift */,
 			);
 			path = budgetManager;
 			sourceTree = "<group>";
@@ -120,7 +137,6 @@
 		1FB846D0225F3DED0057C610 /* Themes */ = {
 			isa = PBXGroup;
 			children = (
-				1FB846CE225F3DB40057C610 /* Theme.swift */,
 				1FB846D1225F3DFC0057C610 /* ThemeProtocol.swift */,
 				1FB846D3225F3F3B0057C610 /* LightTheme.swift */,
 				1FB846D5225F3F440057C610 /* DarkTheme.swift */,
@@ -167,6 +183,8 @@
 			isa = PBXGroup;
 			children = (
 				1FA687A7217A4AFD002D1361 /* BudgetManager.swift */,
+				1F5475A3227863A10086364C /* ColorManager.swift */,
+				1FB846CE225F3DB40057C610 /* ThemeManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -176,6 +194,7 @@
 			children = (
 				1FFE882F21A2B904007965A9 /* UserExpenseType.swift */,
 				1FA687A12179E098002D1361 /* Expense.swift */,
+				1F2C624B227F2119005862DF /* EchangeRatesModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -183,6 +202,7 @@
 		B3D2454A217E368F00400B61 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				1F2C624D227F3DB7005862DF /* ExchangeRates */,
 				1FC709FA2254F1110019073D /* ColorAndLanguageScreen */,
 				1FDB00DE21B1A0ED00CE0616 /* LogInScreen */,
 				B3D2454D217E36BA00400B61 /* TableOfExpencesScreen */,
@@ -321,6 +341,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-budgetManager/Pods-budgetManager-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 			);
@@ -328,6 +349,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 			);
@@ -343,6 +365,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F2C624C227F2119005862DF /* EchangeRatesModel.swift in Sources */,
 				1FB846D2225F3DFC0057C610 /* ThemeProtocol.swift in Sources */,
 				1FA687A6217A2AEE002D1361 /* TableOfExpensesCell.swift in Sources */,
 				1FDB00E121B1A46600CE0616 /* BaseController.swift in Sources */,
@@ -354,13 +377,16 @@
 				1FB846D4225F3F3B0057C610 /* LightTheme.swift in Sources */,
 				1F0750AF22525C210005BCEB /* PickerSection.swift in Sources */,
 				1FA687A22179E098002D1361 /* Expense.swift in Sources */,
+				1F5475A4227863A10086364C /* ColorManager.swift in Sources */,
+				1F2C624F227F3DCE005862DF /* ExchangeRatesViewController.swift in Sources */,
 				1FC709FC2254F13A0019073D /* ColorLanguageViewController.swift in Sources */,
 				1FA687A4217A1B9B002D1361 /* TableOfExpensesViewController.swift in Sources */,
 				1F982B3C21735CCF006B923A /* PickerViewVC.swift in Sources */,
 				1FA687A8217A4AFD002D1361 /* BudgetManager.swift in Sources */,
 				1F982B3A21735CCF006B923A /* AppDelegate.swift in Sources */,
 				B31D743D218A1FA9008B7819 /* Extensions.swift in Sources */,
-				1FB846CF225F3DB40057C610 /* Theme.swift in Sources */,
+				1FB846CF225F3DB40057C610 /* ThemeManager.swift in Sources */,
+				1F7EDFD62261BA4D00A06849 /* gitignore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

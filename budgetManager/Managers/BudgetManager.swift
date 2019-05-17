@@ -1,22 +1,12 @@
-//
-//  budgetManager.swift
-//  budgetManager
-//
-//  Created by Александ on 19/10/2018.
-//  Copyright © 2018 Александ. All rights reserved.
-//
-
 import Foundation
 import RealmSwift
 
 class BudgetManager {
-    //наш синглтон
+    
     private static let shared = BudgetManager()
     private let realmInstance = try! Realm()
     private static let realm = shared.realmInstance
     
-    //Приватный коструктор не позволит другим классам создать инстанс BudgetManager
-    //Таким образом наш синглтон "shared" точно будет единственным инстансом класса в проекте
     private init(){}
     
     static func allObjects() -> [Expense] {
@@ -44,7 +34,7 @@ class BudgetManager {
     
     static func DBHasEntries(ofType type: UserExpenseType.Type) -> Bool {
         return !realm.objects(type).isEmpty
-
+        
     }
     
     
@@ -59,6 +49,6 @@ class BudgetManager {
     }
     
     static func getTotalExpenses(forExpenseType type: String) -> Int {
-       return Int(allObjects().filter { $0.expenseType == type }.reduce(0) { $0 + $1.amountExpense })
+        return Int(allObjects().filter { $0.expenseType == type }.reduce(0) { $0 + $1.amountExpense })
     }
 }
