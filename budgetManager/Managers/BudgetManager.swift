@@ -19,6 +19,16 @@ class BudgetManager {
         }
     }
     
+    static func deleteObject(object: Expense) {
+        try! realm.write {
+            realm.delete(object)
+        }
+    }
+    
+    static func getTotalExpenses(forExpenseType type: String) -> Int {
+        return Int(allObjects().filter { $0.expenseType == type }.reduce(0) { $0 + $1.amountExpense })
+    }
+    
     static func addExpenseType(object: UserExpenseType) {
         try! realm.write {
             realm.add(object)
@@ -38,17 +48,16 @@ class BudgetManager {
     }
     
     
-    static func deleteObject(object: Expense) {
-        try! realm.write {
-            realm.delete(object)
-        }
-    }
+    
     
     static func allExpenseTypes() -> [UserExpenseType] {
         return Array(realm.objects(UserExpenseType.self))
     }
     
-    static func getTotalExpenses(forExpenseType type: String) -> Int {
-        return Int(allObjects().filter { $0.expenseType == type }.reduce(0) { $0 + $1.amountExpense })
-    }
+    
 }
+
+
+
+
+

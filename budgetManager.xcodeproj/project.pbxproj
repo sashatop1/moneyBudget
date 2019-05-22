@@ -12,7 +12,6 @@
 		1F2C624C227F2119005862DF /* EchangeRatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C624B227F2119005862DF /* EchangeRatesModel.swift */; };
 		1F2C624F227F3DCE005862DF /* ExchangeRatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C624E227F3DCE005862DF /* ExchangeRatesViewController.swift */; };
 		1F544F38224780A8007CEF05 /* TableOfExpensesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F544F37224780A8007CEF05 /* TableOfExpensesSection.swift */; };
-		1F5475A4227863A10086364C /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5475A3227863A10086364C /* ColorManager.swift */; };
 		1F982B3A21735CCF006B923A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F982B3921735CCF006B923A /* AppDelegate.swift */; };
 		1F982B3C21735CCF006B923A /* PickerViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F982B3B21735CCF006B923A /* PickerViewVC.swift */; };
 		1F982B3F21735CCF006B923A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F982B3D21735CCF006B923A /* Main.storyboard */; };
@@ -42,7 +41,6 @@
 		1F2C624B227F2119005862DF /* EchangeRatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EchangeRatesModel.swift; sourceTree = "<group>"; };
 		1F2C624E227F3DCE005862DF /* ExchangeRatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesViewController.swift; sourceTree = "<group>"; };
 		1F544F37224780A8007CEF05 /* TableOfExpensesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableOfExpensesSection.swift; sourceTree = "<group>"; };
-		1F5475A3227863A10086364C /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		1F982B3621735CCF006B923A /* budgetManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = budgetManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F982B3921735CCF006B923A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1F982B3B21735CCF006B923A /* PickerViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewVC.swift; sourceTree = "<group>"; };
@@ -183,7 +181,6 @@
 			isa = PBXGroup;
 			children = (
 				1FA687A7217A4AFD002D1361 /* BudgetManager.swift */,
-				1F5475A3227863A10086364C /* ColorManager.swift */,
 				1FB846CE225F3DB40057C610 /* ThemeManager.swift */,
 			);
 			path = Managers;
@@ -377,7 +374,6 @@
 				1FB846D4225F3F3B0057C610 /* LightTheme.swift in Sources */,
 				1F0750AF22525C210005BCEB /* PickerSection.swift in Sources */,
 				1FA687A22179E098002D1361 /* Expense.swift in Sources */,
-				1F5475A4227863A10086364C /* ColorManager.swift in Sources */,
 				1FB5064422916B2400AB98AA /* TabBarController.swift in Sources */,
 				1F2C624F227F3DCE005862DF /* ExchangeRatesViewController.swift in Sources */,
 				1FC709FC2254F13A0019073D /* ColorViewController.swift in Sources */,

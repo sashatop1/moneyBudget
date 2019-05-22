@@ -48,7 +48,6 @@ class ExchangeRatesViewController: BaseController {
                 let rates = try JSONDecoder().decode(ExchangeRatesModel.self, from: data)
                 DispatchQueue.main.async {
                     self.ratesData = rates
-                    print(self.ratesData as Any)
                     self.configureData()
                     
                 }
