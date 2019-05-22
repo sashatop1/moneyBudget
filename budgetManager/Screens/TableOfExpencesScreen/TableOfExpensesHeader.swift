@@ -9,9 +9,7 @@ class TableOfExpensesHeader: UITableViewHeaderFooterView {
         return UITapGestureRecognizer(target: self, action: #selector(handleTap))
     }()
     
-    func setupHeader() {
-        self.backgroundColor = ThemeManager.shared.current.textFieldsBackgrounds
-    }
+    
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)

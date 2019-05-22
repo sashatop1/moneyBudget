@@ -3,11 +3,14 @@ import UIKit
 class TableOfExpensesCell: UITableViewCell {
     static let identifier = "MainVCCell"
     
-    
+
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
     func setupCell(withModel model: Expense) {
+        
+        
+        
         nameLabel.text = model.expenseType
         descriptionLabel.text = String(model.amountExpense)
         

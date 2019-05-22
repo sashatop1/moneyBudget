@@ -1,8 +1,7 @@
 import UIKit
 
-class ColorLanguageViewController: UIViewController {
+class ColorViewController: UIViewController {
     
-    private static let shared = ColorLanguageViewController()
     
     @IBOutlet weak var colorThemeLabels: UILabel!
     @IBOutlet weak var darkThemeOutlet: UISwitch!
@@ -70,6 +69,7 @@ class ColorLanguageViewController: UIViewController {
             UserDefaults.standard.set(true, forKey: "white")
             UserDefaults.standard.set(false, forKey: "black")
             UserDefaults.standard.set(false, forKey: "fun")
+            
             applyTheme()
         }
     }
@@ -96,14 +96,13 @@ class ColorLanguageViewController: UIViewController {
         darkLabel.textColor = ThemeManager.shared.current.labelColor
         lightLabel.textColor = ThemeManager.shared.current.labelColor
         funLabel.textColor = ThemeManager.shared.current.labelColor
-        navigationController?.navigationBar.barTintColor = ThemeManager.shared.current.backgroundColor
+        navigationController?.navigationBar.barTintColor = ThemeManager.shared.current.navigationBackground
         navigationController?.navigationBar.tintColor = ThemeManager.shared.current.labelColor
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: ThemeManager.shared.current.labelColor]
         navigationItem.rightBarButtonItem?.tintColor = ThemeManager.shared.current.labelColor
+        self.tabBarController?.tabBar.tintColor = ThemeManager.shared.current.itemTintColor
+        self.tabBarController?.tabBar.barTintColor = ThemeManager.shared.current.navigationBackground
+        self.tabBarController?.tabBar.unselectedItemTintColor = ThemeManager.shared.current.unselectedItemTintColor
     }
     
-}
-
-extension Notification.Name {
-    static let colorChanger = Notification.Name("ColorChange")
 }

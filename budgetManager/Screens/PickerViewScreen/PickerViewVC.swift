@@ -33,7 +33,6 @@ class PickerViewVC: BaseController {
     @IBOutlet weak var addChoiceButton: UIButton!
     @IBOutlet weak var createTypeButton: UIButton!
     @IBOutlet weak var deleteTypeButton: UIButton!
-    
     @IBOutlet weak var tableButton: UIButton!
     
     
@@ -59,12 +58,10 @@ class PickerViewVC: BaseController {
         configureView()
         
         
-    
+        self.addTapGestureToHideKeyboard()
     }
     override func viewWillAppear(_ animated: Bool) {
         applyTheme()
-        
-        print(ThemeManager.shared.current)
     }
     func getAllStrings() -> [String] {
         let array = BudgetManager.allExpenseTypes()
@@ -76,7 +73,9 @@ class PickerViewVC: BaseController {
     
     @objc func applyTheme() {
         self.view.backgroundColor = ThemeManager.shared.current.backgroundColor
-        
+//        moneyTypePicker.layer.borderWidth = 1
+//        moneyTypePicker.layer.borderColor = ThemeManager.shared.current.labelColor.cgColor
+//        moneyTypePicker.backgroundColor = ThemeManager.shared.current.textFieldsBackgrounds
         self.tableButton.setTitleColor(ThemeManager.shared.current.labelColor, for: .normal)
         self.addChoiceButton.setTitleColor(ThemeManager.shared.current.labelColor, for: .normal)
         self.createTypeButton.setTitleColor(ThemeManager.shared.current.labelColor, for: .normal)
@@ -91,11 +90,22 @@ class PickerViewVC: BaseController {
         textFieldAmount.backgroundColor = ThemeManager.shared.current.textFieldsBackgrounds
         textFieldAmount.attributedPlaceholder = NSAttributedString(string: "Enter amount", attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.shared.current.textFieldsPlaceholder])
         textFieldAmount.textColor = ThemeManager.shared.current.labelColor
-        navigationController?.navigationBar.barTintColor = ThemeManager.shared.current.backgroundColor
+        navigationController?.navigationBar.barTintColor = ThemeManager.shared.current.navigationBackground
         navigationController?.navigationBar.tintColor = ThemeManager.shared.current.labelColor
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: ThemeManager.shared.current.labelColor]
         navigationItem.rightBarButtonItem?.tintColor = ThemeManager.shared.current.labelColor
-        
+        self.tabBarController?.tabBar.tintColor = ThemeManager.shared.current.itemTintColor
+        self.tabBarController?.tabBar.barTintColor = ThemeManager.shared.current.navigationBackground
+        self.tabBarController?.tabBar.unselectedItemTintColor = ThemeManager.shared.current.unselectedItemTintColor
+        moneyTypePicker.reloadAllComponents()
+        tableButton.layer.borderColor = ThemeManager.shared.current.labelColor.cgColor
+        addChoiceButton.layer.borderColor = ThemeManager.shared.current.labelColor.cgColor
+        deleteTypeButton.layer.borderColor = ThemeManager.shared.current.labelColor.cgColor
+        createTypeButton.layer.borderColor = ThemeManager.shared.current.labelColor.cgColor
+        tableButton.backgroundColor = ThemeManager.shared.current.textFieldsBackgrounds
+        addChoiceButton.backgroundColor = ThemeManager.shared.current.textFieldsBackgrounds
+        deleteTypeButton.backgroundColor = ThemeManager.shared.current.textFieldsBackgrounds
+        createTypeButton.backgroundColor = ThemeManager.shared.current.textFieldsBackgrounds
         
     }
     private func configureView() {
@@ -109,12 +119,16 @@ class PickerViewVC: BaseController {
             addChoiceButton.isUserInteractionEnabled = false
             addChoiceButton.alpha = 0.5
         }
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(navigateToColors))
+        tableButton.layer.borderWidth = 1
+        tableButton.layer.cornerRadius = 15
+        addChoiceButton.layer.borderWidth = 1
+        addChoiceButton.layer.cornerRadius = 15
+        deleteTypeButton.layer.borderWidth = 1
+        deleteTypeButton.layer.cornerRadius = 15
+        createTypeButton.layer.borderWidth = 1
+        createTypeButton.layer.cornerRadius = 15
         
-        
-        
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:  UIColor.white]
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(navigateToColors))
-        self.navigationItem.rightBarButtonItem?.tintColor = .white
     }
     
     @objc func navigateToColors() {
@@ -167,6 +181,7 @@ extension PickerViewVC {
         let userExpense = Expense(amountOfUserPick: doubleValue, userPick: valueStr)
         BudgetManager.addObject(object: userExpense)
         textFieldAmount.text?.removeAll()
+        view.endEditing(true)
     }
     
 }
@@ -208,19 +223,23 @@ extension PickerViewVC: UIPickerViewDelegate, UIPickerViewDataSource, UITextFiel
         let aSet = NSCharacterSet(charactersIn:"0123456789.").inverted
         let compSepByCharInSet = string.components(separatedBy: aSet)
         let numberFiltered = compSepByCharInSet.joined(separator: "")
-        
-        let textExpense = (textFieldAmount.text! as NSString).replacingCharacters(in: range, with: string)
+
+        let textExpense = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         if !textExpense.isEmpty {
             addChoiceButton.isUserInteractionEnabled = true
             addChoiceButton.alpha = 1
         } else {
             addChoiceButton.isUserInteractionEnabled = false
             addChoiceButton.alpha = 0.5
-            
+
         }
         return string == numberFiltered
-       
+        
+
     }
+    
+    
+    
 }
 
 

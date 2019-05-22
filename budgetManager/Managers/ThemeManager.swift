@@ -5,9 +5,7 @@ class ThemeManager {
     static let shared = ThemeManager()
     
     
-    private init(){
-        
-    }
+    private init(){}
     
     var current: ThemeProtocol = {
         var theme: ThemeProtocol = DarkTheme()

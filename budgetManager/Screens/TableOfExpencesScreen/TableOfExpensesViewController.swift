@@ -35,7 +35,12 @@ class TableOfExpensesViewController: UIViewController {
         super.viewWillAppear(animated)
         self.tableView.backgroundColor = ThemeManager.shared.current.backgroundColor
         self.navigationItem.backBarButtonItem?.tintColor = ThemeManager.shared.current.labelColor
-        
+        self.navigationController?.navigationBar.barTintColor = ThemeManager.shared.current.navigationBackground
+        self.tabBarController?.tabBar.tintColor = ThemeManager.shared.current.itemTintColor
+        self.tabBarController?.tabBar.barTintColor = ThemeManager.shared.current.navigationBackground
+        self.tabBarController?.tabBar.unselectedItemTintColor = ThemeManager.shared.current.unselectedItemTintColor
+        self.tableView.tableHeaderView?.tintColor = ThemeManager.shared.current.labelColor
+         
     }
     
     
@@ -65,7 +70,10 @@ extension TableOfExpensesViewController: UITableViewDelegate, UITableViewDataSou
     //+colorCell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableOfExpensesCell.identifier) as! TableOfExpensesCell
+        
+        
         let expense = groupedSections[indexPath.section].array[indexPath.row]
+        
         cell.setupCell(withModel: expense)
         return cell
     }
@@ -85,7 +93,7 @@ extension TableOfExpensesViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: TableOfExpensesHeader.headerIdentifier) as! TableOfExpensesHeader
         
-        header.setupHeader()
+        
         header.onTap = { [weak self] in
             guard let weakSelf = self else { return }
             weakSelf.groupedSections[section].isExpanded.toggle()
@@ -94,11 +102,6 @@ extension TableOfExpensesViewController: UITableViewDelegate, UITableViewDataSou
         return header
         
     }
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: TableOfExpensesHeader.headerIdentifier) as! TableOfExpensesHeader
-        header.textLabel?.textColor = .black
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
     }

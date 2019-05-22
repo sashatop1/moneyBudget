@@ -3,7 +3,7 @@ import Foundation
 class ColorManager {
     
     
-    enum colorState {
+    enum СolorState {
         case black
         case white
         case fun

@@ -13,7 +13,6 @@
 		1F2C624F227F3DCE005862DF /* ExchangeRatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C624E227F3DCE005862DF /* ExchangeRatesViewController.swift */; };
 		1F544F38224780A8007CEF05 /* TableOfExpensesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F544F37224780A8007CEF05 /* TableOfExpensesSection.swift */; };
 		1F5475A4227863A10086364C /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5475A3227863A10086364C /* ColorManager.swift */; };
-		1F7EDFD62261BA4D00A06849 /* gitignore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7EDFD52261BA4D00A06849 /* gitignore.swift */; };
 		1F982B3A21735CCF006B923A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F982B3921735CCF006B923A /* AppDelegate.swift */; };
 		1F982B3C21735CCF006B923A /* PickerViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F982B3B21735CCF006B923A /* PickerViewVC.swift */; };
 		1F982B3F21735CCF006B923A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F982B3D21735CCF006B923A /* Main.storyboard */; };
@@ -24,12 +23,13 @@
 		1FA687A4217A1B9B002D1361 /* TableOfExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA687A3217A1B9B002D1361 /* TableOfExpensesViewController.swift */; };
 		1FA687A6217A2AEE002D1361 /* TableOfExpensesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA687A5217A2AEE002D1361 /* TableOfExpensesCell.swift */; };
 		1FA687A8217A4AFD002D1361 /* BudgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA687A7217A4AFD002D1361 /* BudgetManager.swift */; };
+		1FB5064422916B2400AB98AA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5064322916B2400AB98AA /* TabBarController.swift */; };
 		1FB846CF225F3DB40057C610 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB846CE225F3DB40057C610 /* ThemeManager.swift */; };
 		1FB846D2225F3DFC0057C610 /* ThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB846D1225F3DFC0057C610 /* ThemeProtocol.swift */; };
 		1FB846D4225F3F3B0057C610 /* LightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB846D3225F3F3B0057C610 /* LightTheme.swift */; };
 		1FB846D6225F3F440057C610 /* DarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB846D5225F3F440057C610 /* DarkTheme.swift */; };
 		1FB846D9225F48670057C610 /* FunTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB846D8225F48670057C610 /* FunTheme.swift */; };
-		1FC709FC2254F13A0019073D /* ColorLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC709FB2254F13A0019073D /* ColorLanguageViewController.swift */; };
+		1FC709FC2254F13A0019073D /* ColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC709FB2254F13A0019073D /* ColorViewController.swift */; };
 		1FDB00E121B1A46600CE0616 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDB00E021B1A46600CE0616 /* BaseController.swift */; };
 		1FFE883021A2B904007965A9 /* UserExpenseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE882F21A2B904007965A9 /* UserExpenseType.swift */; };
 		A178B7ADE4DC9BB1C191BC32 /* Pods_budgetManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C548BAC194CD38C2D6C42A5D /* Pods_budgetManager.framework */; };
@@ -43,7 +43,6 @@
 		1F2C624E227F3DCE005862DF /* ExchangeRatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesViewController.swift; sourceTree = "<group>"; };
 		1F544F37224780A8007CEF05 /* TableOfExpensesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableOfExpensesSection.swift; sourceTree = "<group>"; };
 		1F5475A3227863A10086364C /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
-		1F7EDFD52261BA4D00A06849 /* gitignore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gitignore.swift; sourceTree = "<group>"; };
 		1F982B3621735CCF006B923A /* budgetManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = budgetManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F982B3921735CCF006B923A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1F982B3B21735CCF006B923A /* PickerViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewVC.swift; sourceTree = "<group>"; };
@@ -56,13 +55,14 @@
 		1FA687A3217A1B9B002D1361 /* TableOfExpensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableOfExpensesViewController.swift; sourceTree = "<group>"; };
 		1FA687A5217A2AEE002D1361 /* TableOfExpensesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableOfExpensesCell.swift; sourceTree = "<group>"; };
 		1FA687A7217A4AFD002D1361 /* BudgetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetManager.swift; sourceTree = "<group>"; };
+		1FB5064322916B2400AB98AA /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		1FB846CE225F3DB40057C610 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		1FB846D1225F3DFC0057C610 /* ThemeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeProtocol.swift; sourceTree = "<group>"; };
 		1FB846D3225F3F3B0057C610 /* LightTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightTheme.swift; sourceTree = "<group>"; };
 		1FB846D5225F3F440057C610 /* DarkTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkTheme.swift; sourceTree = "<group>"; };
 		1FB846D8225F48670057C610 /* FunTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunTheme.swift; sourceTree = "<group>"; };
 		1FBEAB44225CF89700EBA1A0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
-		1FC709FB2254F13A0019073D /* ColorLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLanguageViewController.swift; sourceTree = "<group>"; };
+		1FC709FB2254F13A0019073D /* ColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
 		1FDB00E021B1A46600CE0616 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		1FFE882F21A2B904007965A9 /* UserExpenseType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserExpenseType.swift; sourceTree = "<group>"; };
 		9CBA95B1096179407BC186D9 /* Pods-budgetManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budgetManager.release.xcconfig"; path = "Pods/Target Support Files/Pods-budgetManager/Pods-budgetManager.release.xcconfig"; sourceTree = "<group>"; };
@@ -129,7 +129,6 @@
 				B31D743C218A1FA9008B7819 /* Extensions.swift */,
 				1F982B4521735CD3006B923A /* Info.plist */,
 				1F062A7E21760C870022A3CD /* GoogleService-Info.plist */,
-				1F7EDFD52261BA4D00A06849 /* gitignore.swift */,
 			);
 			path = budgetManager;
 			sourceTree = "<group>";
@@ -148,7 +147,7 @@
 		1FC709FA2254F1110019073D /* ColorAndLanguageScreen */ = {
 			isa = PBXGroup;
 			children = (
-				1FC709FB2254F13A0019073D /* ColorLanguageViewController.swift */,
+				1FC709FB2254F13A0019073D /* ColorViewController.swift */,
 			);
 			path = ColorAndLanguageScreen;
 			sourceTree = "<group>";
@@ -164,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				1FDB00E021B1A46600CE0616 /* BaseController.swift */,
+				1FB5064322916B2400AB98AA /* TabBarController.swift */,
 			);
 			path = BaseClasses;
 			sourceTree = "<group>";
@@ -378,15 +378,15 @@
 				1F0750AF22525C210005BCEB /* PickerSection.swift in Sources */,
 				1FA687A22179E098002D1361 /* Expense.swift in Sources */,
 				1F5475A4227863A10086364C /* ColorManager.swift in Sources */,
+				1FB5064422916B2400AB98AA /* TabBarController.swift in Sources */,
 				1F2C624F227F3DCE005862DF /* ExchangeRatesViewController.swift in Sources */,
-				1FC709FC2254F13A0019073D /* ColorLanguageViewController.swift in Sources */,
+				1FC709FC2254F13A0019073D /* ColorViewController.swift in Sources */,
 				1FA687A4217A1B9B002D1361 /* TableOfExpensesViewController.swift in Sources */,
 				1F982B3C21735CCF006B923A /* PickerViewVC.swift in Sources */,
 				1FA687A8217A4AFD002D1361 /* BudgetManager.swift in Sources */,
 				1F982B3A21735CCF006B923A /* AppDelegate.swift in Sources */,
 				B31D743D218A1FA9008B7819 /* Extensions.swift in Sources */,
 				1FB846CF225F3DB40057C610 /* ThemeManager.swift in Sources */,
-				1F7EDFD62261BA4D00A06849 /* gitignore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
