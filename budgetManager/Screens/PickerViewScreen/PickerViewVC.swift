@@ -73,9 +73,6 @@ class PickerViewVC: BaseController {
     
     @objc func applyTheme() {
         self.view.backgroundColor = ThemeManager.shared.current.backgroundColor
-//        moneyTypePicker.layer.borderWidth = 1
-//        moneyTypePicker.layer.borderColor = ThemeManager.shared.current.labelColor.cgColor
-//        moneyTypePicker.backgroundColor = ThemeManager.shared.current.textFieldsBackgrounds
         self.tableButton.setTitleColor(ThemeManager.shared.current.labelColor, for: .normal)
         self.addChoiceButton.setTitleColor(ThemeManager.shared.current.labelColor, for: .normal)
         self.createTypeButton.setTitleColor(ThemeManager.shared.current.labelColor, for: .normal)
