@@ -43,16 +43,6 @@ class PickerViewVC: BaseController {
     var userChoice: String = MoneyType.allCasesDescriptionDefault().first!
     var indexOfPicker = Int()
     
-    var sections: [PickerSection] = {
-        let sections = BudgetManager.allExpenseTypes()
-        let names = sections.map { $0.userExpenesType }
-        return names.map { group -> PickerSection in
-            let correspondingSections = sections.filter { $0.userExpenesType == group }
-            return PickerSection(name: group, array: correspondingSections)
-        }
-        
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()

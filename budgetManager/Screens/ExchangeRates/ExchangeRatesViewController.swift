@@ -3,8 +3,6 @@ import Alamofire
 
 class ExchangeRatesViewController: BaseController {
     
-    //@IBOutlet weak var mainLabelOutlet: UILabel!
-    
     @IBOutlet weak var rubTextField: UITextField!
     @IBOutlet weak var eurTextField: UITextField!
     @IBOutlet weak var czechTextField: UITextField!
@@ -77,7 +75,6 @@ class ExchangeRatesViewController: BaseController {
         yuanTextField.textColor = ThemeManager.shared.current.labelColor
         usdTextField.textColor = ThemeManager.shared.current.labelColor
         poundTextField.textColor = ThemeManager.shared.current.labelColor
-        //mainLabelOutlet.textColor = ThemeManager.shared.current.labelColor
         rubTextField.backgroundColor = ThemeManager.shared.current.textFieldsBackgrounds
         eurTextField.backgroundColor = ThemeManager.shared.current.textFieldsBackgrounds
         czechTextField.backgroundColor = ThemeManager.shared.current.textFieldsBackgrounds

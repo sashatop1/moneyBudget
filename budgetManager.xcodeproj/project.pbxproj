@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1F062A7F21760C870022A3CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F062A7E21760C870022A3CD /* GoogleService-Info.plist */; };
-		1F0750AF22525C210005BCEB /* PickerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0750AE22525C210005BCEB /* PickerSection.swift */; };
 		1F2C624C227F2119005862DF /* EchangeRatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C624B227F2119005862DF /* EchangeRatesModel.swift */; };
 		1F2C624F227F3DCE005862DF /* ExchangeRatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C624E227F3DCE005862DF /* ExchangeRatesViewController.swift */; };
 		1F544F38224780A8007CEF05 /* TableOfExpensesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F544F37224780A8007CEF05 /* TableOfExpensesSection.swift */; };
@@ -37,7 +36,6 @@
 
 /* Begin PBXFileReference section */
 		1F062A7E21760C870022A3CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		1F0750AE22525C210005BCEB /* PickerSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerSection.swift; sourceTree = "<group>"; };
 		1F2C624B227F2119005862DF /* EchangeRatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EchangeRatesModel.swift; sourceTree = "<group>"; };
 		1F2C624E227F3DCE005862DF /* ExchangeRatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesViewController.swift; sourceTree = "<group>"; };
 		1F544F37224780A8007CEF05 /* TableOfExpensesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableOfExpensesSection.swift; sourceTree = "<group>"; };
@@ -212,7 +210,6 @@
 			isa = PBXGroup;
 			children = (
 				1F982B3B21735CCF006B923A /* PickerViewVC.swift */,
-				1F0750AE22525C210005BCEB /* PickerSection.swift */,
 			);
 			path = PickerViewScreen;
 			sourceTree = "<group>";
@@ -372,7 +369,6 @@
 				1F544F38224780A8007CEF05 /* TableOfExpensesSection.swift in Sources */,
 				1F9944BC222D78FF004062FE /* TableOfExpensesHeader.swift in Sources */,
 				1FB846D4225F3F3B0057C610 /* LightTheme.swift in Sources */,
-				1F0750AF22525C210005BCEB /* PickerSection.swift in Sources */,
 				1FA687A22179E098002D1361 /* Expense.swift in Sources */,
 				1FB5064422916B2400AB98AA /* TabBarController.swift in Sources */,
 				1F2C624F227F3DCE005862DF /* ExchangeRatesViewController.swift in Sources */,
